@@ -1,130 +1,110 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import PageShell from "@/components/PageShell";
+import {
+  businessDetails,
+  getCompanyDisclosure,
+  hasValue,
+} from "@/config/business";
+import { legalConfig } from "@/config/legal";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
+  title: "Terms and Conditions | Sterling Crest Accountants",
+  description:
+    "Website terms and conditions for Sterling Crest Accountants Ltd covering use of this site and engagement information.",
+  path: "/terms",
+});
 
 export default function TermsPage() {
+  // MANAGEMENT/LEGAL REVIEW REQUIRED before public launch.
+  // Confirm liability wording, engagement terms and any indemnity statements.
   return (
-    <main className="min-h-screen">
-      <Navbar />
-
-      {/* SECTION 1: HERO */}
-      <section className="relative w-full bg-gradient-to-br from-[#0B1C2D] via-[#081524] to-[#050E18] py-24 pt-32">
-        <div className="container mx-auto px-6">
+    <PageShell>
+      <section className="relative w-full bg-gradient-to-br from-[#0B1C2D] via-[#081524] to-[#050E18] py-16 md:py-24 pt-24 md:pt-32">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#F5F7FA] mb-6">
-              Terms & Conditions
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#F5F7FA] mb-5">
+              Terms and Conditions
             </h1>
-            <p className="text-lg md:text-xl text-[#AAB2BD] leading-relaxed">
-              These terms and conditions govern the provision of accountancy and
-              tax services by Sterling Crest Accountants LTD. Please read them
-              carefully.
+            <p className="text-lg text-[#AAB2BD] leading-relaxed">
+              These terms govern use of the {businessDetails.tradingName}{" "}
+              website. Separate engagement terms apply once a client
+              relationship is formally accepted.
             </p>
           </div>
         </div>
       </section>
 
-      {/* SECTION 2: CONTENT */}
-      <section className="relative w-full bg-[#0B1C2D] py-20">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-8">
-              <div className="bg-gradient-to-br from-[#081524] to-[#0B1C2D] p-8 rounded-xl border border-[#C9A14A] border-opacity-20">
-                <h2 className="text-2xl font-bold text-[#F5F7FA] mb-4">
-                  Service Provision
-                </h2>
-                <p className="text-[#AAB2BD] leading-relaxed">
-                  Sterling Crest Accountants LTD provides professional
-                  accountancy and tax services in accordance with UK regulatory
-                  standards. Services are delivered based on agreed scope,
-                  timelines, and fee structures.
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-[#081524] to-[#0B1C2D] p-8 rounded-xl border border-[#C9A14A] border-opacity-20">
-                <h2 className="text-2xl font-bold text-[#F5F7FA] mb-4">
-                  Client Responsibilities
-                </h2>
-                <p className="text-[#AAB2BD] leading-relaxed">
-                  Clients are required to provide accurate, complete, and timely
-                  information necessary for service delivery. Failure to provide
-                  required information may affect service quality and timelines.
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-[#081524] to-[#0B1C2D] p-8 rounded-xl border border-[#C9A14A] border-opacity-20">
-                <h2 className="text-2xl font-bold text-[#F5F7FA] mb-4">
-                  Fees and Payment
-                </h2>
-                <p className="text-[#AAB2BD] leading-relaxed">
-                  Fees are agreed in advance and clearly communicated. Payment
-                  terms are specified in engagement letters. Late payment may
-                  result in suspension of services.
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-[#081524] to-[#0B1C2D] p-8 rounded-xl border border-[#C9A14A] border-opacity-20">
-                <h2 className="text-2xl font-bold text-[#F5F7FA] mb-4">
-                  Professional Standards
-                </h2>
-                <p className="text-[#AAB2BD] leading-relaxed">
-                  All services are provided in accordance with professional
-                  accountancy standards and UK regulatory requirements. We
-                  maintain professional indemnity insurance as required.
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-[#081524] to-[#0B1C2D] p-8 rounded-xl border border-[#C9A14A] border-opacity-20">
-                <h2 className="text-2xl font-bold text-[#F5F7FA] mb-4">
-                  Limitation of Liability
-                </h2>
-                <p className="text-[#AAB2BD] leading-relaxed">
-                  Our liability is limited to the extent permitted by law and
-                  professional regulations. We are not liable for losses arising
-                  from incomplete or inaccurate information provided by clients.
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-[#081524] to-[#0B1C2D] p-8 rounded-xl border border-[#C9A14A] border-opacity-20">
-                <h2 className="text-2xl font-bold text-[#F5F7FA] mb-4">
-                  Termination
-                </h2>
-                <p className="text-[#AAB2BD] leading-relaxed">
-                  Either party may terminate the engagement with reasonable
-                  notice. Upon termination, outstanding fees remain due, and we
-                  will provide necessary handover documentation.
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-[#081524] to-[#0B1C2D] p-8 rounded-xl border border-[#C9A14A] border-opacity-20">
-                <h2 className="text-2xl font-bold text-[#F5F7FA] mb-4">
-                  Contact
-                </h2>
-                <p className="text-[#AAB2BD] leading-relaxed mb-4">
-                  For questions about these terms, please contact us:
-                </p>
-                <p className="text-[#AAB2BD]">
-                  Email:{" "}
-                  <a
-                    href="mailto:info@sterlingcrestaccountants.co.uk"
-                    className="text-[#C9A14A] hover:underline"
-                  >
-                    info@sterlingcrestaccountants.co.uk
-                  </a>
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-[#081524] to-[#0B1C2D] p-8 rounded-xl border border-[#C9A14A] border-opacity-20">
-                <p className="text-sm text-[#AAB2BD]">
-                  Last updated: {new Date().getFullYear()}. These terms may be
-                  updated periodically. Continued use of our services
-                  constitutes acceptance of any changes.
-                </p>
-              </div>
-            </div>
+      <section className="relative w-full bg-[#0B1C2D] py-14 md:py-20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto space-y-6">
+            <Term
+              title="1. Website ownership"
+              body={`${getCompanyDisclosure()} This website is operated by ${businessDetails.legalName}.`}
+            />
+            <Term
+              title="2. General information only"
+              body="Content on this website is provided for general information. It is not personalised tax, accounting or legal advice and should not be relied on as such."
+            />
+            <Term
+              title="3. No professional relationship until engagement"
+              body="Submitting an enquiry or using this website does not create an accountant, client relationship. A professional relationship begins only when we issue an engagement letter (or equivalent written agreement) and you accept it."
+            />
+            <Term
+              title="4. Engagement letters"
+              body="Where we agree to provide services, the scope, fees, responsibilities and limitations will be set out in an engagement letter or written confirmation. Those terms take precedence for the services concerned."
+            />
+            <Term
+              title="5. Client responsibilities"
+              body="Clients are responsible for providing complete, accurate and timely information. Delays or inaccuracies in information provided may affect our ability to meet deadlines or deliver agreed services."
+            />
+            <Term
+              title="6. Deadlines"
+              body="We support clients with relevant filing and payment dates as part of an agreed engagement. Ultimate responsibility for meeting statutory deadlines remains subject to the engagement terms and the timely provision of required information."
+            />
+            <Term
+              title="7. Intellectual property"
+              body="Website content, branding and materials are owned by or licensed to Sterling Crest Accountants Ltd. You may not copy or reuse content for commercial purposes without permission."
+            />
+            <Term
+              title="8. Website availability"
+              body="We aim to keep the website available, but we do not guarantee uninterrupted access. We may update, suspend or withdraw content without notice."
+            />
+            <Term
+              title="9. External links"
+              body="This website may link to third party sites such as GOV.UK. We are not responsible for the content or privacy practices of external websites."
+            />
+            <Term
+              title="10. Liability"
+              body="To the fullest extent permitted by law, we are not liable for loss arising from reliance on general website content alone. Nothing in these terms excludes or limits liability that cannot be excluded under applicable law."
+            />
+            {/* Professional indemnity wording intentionally omitted until confirmed. */}
+            <Term
+              title="11. Governing law"
+              body="These terms are governed by the laws of England and Wales. The courts of England and Wales have exclusive jurisdiction, subject to any mandatory consumer protections that apply."
+            />
+            <Term
+              title="12. Contact"
+              body={`Questions about these terms can be sent to ${businessDetails.email}.${
+                hasValue(businessDetails.registeredOffice)
+                  ? ` Registered office: ${businessDetails.registeredOffice}.`
+                  : ""
+              }`}
+            />
+            <p className="text-sm text-[#AAB2BD]">
+              Last updated: {legalConfig.termsLastUpdated}.
+            </p>
           </div>
         </div>
       </section>
+    </PageShell>
+  );
+}
 
-      <Footer />
-    </main>
+function Term({ title, body }) {
+  return (
+    <div className="bg-gradient-to-br from-[#081524] to-[#0B1C2D] p-6 md:p-8 rounded-xl border border-[#C9A14A]/20">
+      <h2 className="text-xl md:text-2xl font-bold text-[#F5F7FA] mb-3">{title}</h2>
+      <p className="text-[#AAB2BD] leading-relaxed">{body}</p>
+    </div>
   );
 }

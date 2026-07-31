@@ -1,95 +1,91 @@
 import Image from "next/image";
 import Link from "next/link";
+import { businessDetails } from "@/config/business";
+import { ConsultationCta } from "@/components/ConsultationCta";
 
 export default function HeroSection() {
+  const stats = businessDetails.trustStats.filter((stat) => stat.enabled);
+
   return (
-    <section className="relative w-full bg-gradient-to-br from-[#0B1C2D] via-[#081524] to-[#050E18] min-h-screen flex items-center overflow-hidden pt-24">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
+    <section className="relative w-full bg-gradient-to-br from-[#0B1C2D] via-[#081524] to-[#050E18] min-h-[90vh] flex items-center overflow-hidden pt-8 md:pt-16">
+      <div className="absolute inset-0 opacity-5" aria-hidden="true">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, #C9A14A 1px, transparent 0)`,
+            backgroundImage:
+              "radial-gradient(circle at 2px 2px, #C9A14A 1px, transparent 0)",
             backgroundSize: "40px 40px",
           }}
-        ></div>
+        />
       </div>
 
-      <div className="container mx-auto px-6 py-20 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
-          {/* Content */}
-          <div className="text-center lg:text-left space-y-8">
-            <div className="inline-block">
-              <span className="text-[#C9A14A] text-sm font-semibold uppercase tracking-wider px-4 py-2 border border-[#C9A14A] border-opacity-30 rounded-full">
-                Trusted UK Accountants
-              </span>
-            </div>
-
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#F5F7FA] leading-tight">
-              Clarity, Compliance, and{" "}
-              <span className="relative inline-block">
-                <span className="text-[#C9A14A]">Growth</span>
-                <span className="absolute bottom-2 left-0 right-0 h-3 bg-[#C9A14A] bg-opacity-20 -z-10"></span>
-              </span>
-            </h1>
-
-            <p className="text-xl md:text-2xl text-[#AAB2BD] leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Professional accountancy and tax services delivered with
-              precision, clarity, and integrity across the UK.
+      <div className="container mx-auto px-4 sm:px-6 py-16 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
+          <div className="text-center lg:text-left space-y-6">
+            <p className="text-[#C9A14A] text-sm font-semibold uppercase tracking-wider">
+              {businessDetails.tradingName}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-              <Link
-                href="/contact"
-                className="group relative bg-[#C9A14A] text-[#0B1C2D] px-10 py-4 rounded-lg font-semibold text-lg hover:bg-[#B08B3E] transition-all duration-300 text-center shadow-lg shadow-[#C9A14A] shadow-opacity-20 hover:shadow-xl hover:shadow-[#C9A14A] hover:shadow-opacity-30 transform hover:-translate-y-1"
-              >
-                Book a Consultation
-                <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">
-                  →
-                </span>
-              </Link>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#F5F7FA] leading-tight break-words">
+              Practical accounting and tax support for businesses and
+              individuals
+            </h1>
+
+            <p className="text-lg sm:text-xl text-[#AAB2BD] leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              Bookkeeping, tax returns, payroll and company accounts with
+              clear explanations, deadline support and a straightforward next
+              step.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+              <ConsultationCta location="hero">Book a Consultation</ConsultationCta>
               <Link
                 href="/services"
-                className="border-2 border-[#C9A14A] text-[#C9A14A] px-10 py-4 rounded-lg font-semibold text-lg bg-transparent hover:bg-[#C9A14A] hover:text-[#0B1C2D] transition-all duration-300 text-center"
+                className="inline-flex items-center justify-center min-h-12 px-8 py-3 rounded-lg font-semibold border-2 border-[#C9A14A] text-[#C9A14A] hover:bg-[#C9A14A] hover:text-[#0B1C2D] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
               >
-                Our Services
+                View services
               </Link>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 pt-8 max-w-md mx-auto lg:mx-0">
-              <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-[#C9A14A]">20+</div>
-                <div className="text-sm text-[#AAB2BD] mt-1">Clients</div>
+            {stats.length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 max-w-xl mx-auto lg:mx-0">
+                {stats.map((stat) => (
+                  <div key={stat.label} className="text-center lg:text-left">
+                    {!stat.isTextOnly && stat.value ? (
+                      <>
+                        <div className="text-2xl font-bold text-[#C9A14A]">
+                          {stat.value}
+                        </div>
+                        <div className="text-sm text-[#AAB2BD] mt-1">
+                          {stat.label}
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-sm text-[#AAB2BD] leading-snug pt-1">
+                        {stat.label}
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
-              <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-[#C9A14A]">15+</div>
-                <div className="text-sm text-[#AAB2BD] mt-1">
-                  Years Experience
-                </div>
-              </div>
-              <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-[#C9A14A]">100%</div>
-                <div className="text-sm text-[#AAB2BD] mt-1">Compliance</div>
-              </div>
-            </div>
+            )}
           </div>
 
-          {/* Image */}
           <div className="relative z-10 hidden lg:block">
-            <div className="relative w-full h-[600px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl group">
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1C2D] to-transparent z-10"></div>
+            <div className="relative w-full h-[560px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/homepage/home-page-hero-section.webp"
-                alt="Professional accounting services"
+                alt="Accounting workspace representing Sterling Crest’s practical support for UK clients"
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                sizes="(max-width: 1024px) 0px, 560px"
+                className="object-cover"
                 priority
               />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-[#0B1C2D] to-transparent"
+                aria-hidden="true"
+              />
             </div>
-            {/* Decorative Elements */}
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#C9A14A] bg-opacity-10 rounded-full blur-3xl"></div>
-            <div className="absolute -top-6 -left-6 w-24 h-24 bg-[#C9A14A] bg-opacity-10 rounded-full blur-2xl"></div>
           </div>
         </div>
       </div>

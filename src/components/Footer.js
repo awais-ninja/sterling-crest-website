@@ -1,181 +1,206 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ConsultationCta } from "@/components/ConsultationCta";
+import {
+  businessDetails,
+  footerServiceSlugs,
+  getCompanyDisclosure,
+  getEmailHref,
+  getPhoneHref,
+  hasValue,
+} from "@/config/business";
+import { legalLinks, navigation } from "@/config/site";
+import { getServiceBySlug } from "@/data/services";
+
+const footerServices = footerServiceSlugs
+  .map((slug) => getServiceBySlug(slug))
+  .filter(Boolean);
 
 export default function Footer() {
+  const emailHref = getEmailHref();
+  const phoneHref = getPhoneHref();
+  const creditIsLink = hasValue(businessDetails.creditUrl);
+
   return (
-    <footer className="relative w-full bg-[#0B1C2D] border-t border-[#C9A14A]">
-      <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto">
-          {/* Column 1: Brand & Positioning */}
-          <div className="text-center md:text-left">
-            <div className="mb-6 flex justify-center md:justify-start">
+    <footer className="relative w-full bg-[#0B1C2D] border-t border-[#C9A14A]/40">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-10 md:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 text-center sm:text-left">
+          <div className="sm:col-span-2 lg:col-span-1 flex flex-col items-center sm:items-start">
+            <Link
+              href="/"
+              className="inline-block mb-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+            >
               <Image
                 src="/logo.svg"
-                alt="Sterling Crest Accountants LTD"
-                width={180}
-                height={60}
-                className="h-12 w-auto mb-4"
+                alt={businessDetails.legalName}
+                width={260}
+                height={90}
+                className="w-[180px] sm:w-[200px] lg:w-[240px] h-auto mx-auto sm:mx-0"
               />
-            </div>
-            <p className="text-[#AAB2BD] leading-relaxed">
-              Professional accountancy and tax services delivered with clarity,
-              structure, and integrity across the UK.
+            </Link>
+            <p className="text-[#AAB2BD] leading-relaxed text-sm mb-5 max-w-sm mx-auto sm:mx-0">
+              {businessDetails.brandDescription}
             </p>
+            <ConsultationCta
+              location="footer"
+              className="min-h-11 px-5 text-sm"
+            >
+              Book a Consultation
+            </ConsultationCta>
           </div>
 
-          {/* Column 2: Services */}
-          <div className="text-center md:text-left">
-            <h3 className="text-xl font-semibold text-[#F5F7FA] mb-4">
+          <div>
+            <h2 className="text-base font-semibold text-[#F5F7FA] mb-3 tracking-wide">
               Services
-            </h3>
+            </h2>
             <ul className="space-y-2">
-              <li>
+              {footerServices.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="text-[#AAB2BD] hover:text-[#C9A14A] transition-colors text-sm leading-snug focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+                  >
+                    {service.navLabel}
+                  </Link>
+                </li>
+              ))}
+              <li className="pt-1">
                 <Link
                   href="/services"
-                  className="text-[#AAB2BD] hover:text-[#C9A14A] transition-colors"
+                  className="text-[#C9A14A] hover:text-[#B08B3E] transition-colors text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
                 >
-                  Accounting & Bookkeeping
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="text-[#AAB2BD] hover:text-[#C9A14A] transition-colors"
-                >
-                  Tax Planning & Compliance
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="text-[#AAB2BD] hover:text-[#C9A14A] transition-colors"
-                >
-                  Self-Assessment
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="text-[#AAB2BD] hover:text-[#C9A14A] transition-colors"
-                >
-                  Payroll Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="text-[#AAB2BD] hover:text-[#C9A14A] transition-colors"
-                >
-                  Business Advisory
+                  View All Services
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Company */}
-          <div className="text-center md:text-left">
-            <h3 className="text-xl font-semibold text-[#F5F7FA] mb-4">
+          <div>
+            <h2 className="text-base font-semibold text-[#F5F7FA] mb-3 tracking-wide">
               Company
-            </h3>
+            </h2>
             <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/about"
-                  className="text-[#AAB2BD] hover:text-[#C9A14A] transition-colors"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/faqs"
-                  className="text-[#AAB2BD] hover:text-[#C9A14A] transition-colors"
-                >
-                  FAQs
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-[#AAB2BD] hover:text-[#C9A14A] transition-colors"
-                >
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/privacy"
-                  className="text-[#AAB2BD] hover:text-[#C9A14A] transition-colors"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/terms"
-                  className="text-[#AAB2BD] hover:text-[#C9A14A] transition-colors"
-                >
-                  Terms & Conditions
-                </Link>
-              </li>
+              {navigation.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-[#AAB2BD] hover:text-[#C9A14A] transition-colors text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              {legalLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-[#AAB2BD] hover:text-[#C9A14A] transition-colors text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Column 4: Contact & Legal */}
-          <div className="text-center md:text-left">
-            <h3 className="text-xl font-semibold text-[#F5F7FA] mb-4">
+          <div>
+            <h2 className="text-base font-semibold text-[#F5F7FA] mb-3 tracking-wide">
               Contact
-            </h3>
-            <div className="text-[#AAB2BD] space-y-3 mb-6">
+            </h2>
+            <div className="text-[#AAB2BD] space-y-3 text-sm">
+              {phoneHref && (
+                <p>
+                  <span className="block text-[#F5F7FA] text-xs uppercase tracking-wider mb-1">
+                    Phone
+                  </span>
+                  <a
+                    href={phoneHref}
+                    aria-label={`Call ${businessDetails.phone}`}
+                    className="text-[#C9A14A] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+                  >
+                    {businessDetails.phone}
+                  </a>
+                </p>
+              )}
+              {hasValue(businessDetails.email) && (
+                <p>
+                  <span className="block text-[#F5F7FA] text-xs uppercase tracking-wider mb-1">
+                    Email
+                  </span>
+                  <a
+                    href={emailHref || `mailto:${businessDetails.email}`}
+                    aria-label={`Email ${businessDetails.email}`}
+                    className="text-[#C9A14A] hover:underline break-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+                  >
+                    {businessDetails.email}
+                  </a>
+                </p>
+              )}
               <p>
-                Email:{" "}
-                <a
-                  href="mailto:info@sterlingcrestaccountants.co.uk"
-                  className="hover:text-[#C9A14A] transition-colors"
-                >
-                  info@sterlingcrestaccountants.co.uk
-                </a>
+                <span className="block text-[#F5F7FA] text-xs uppercase tracking-wider mb-1">
+                  Opening hours
+                </span>
+                Monday to Friday
+                <br />
+                8:00am to 5:00pm
               </p>
-              <p>
-                Phone:{" "}
-                <a
-                  href="tel:"
-                  className="hover:text-[#C9A14A] transition-colors"
-                >
-                  [UK number]
-                </a>
-              </p>
-            </div>
-
-            <div className="border-t border-[#C9A14A]/30 pt-6 mt-6">
-              <div className="text-[#AAB2BD] space-y-2 text-sm">
-                <p>Sterling Crest Accountants LTD</p>
-                <p>Registered in England & Wales</p>
-                <p>Company Number: [To be inserted]</p>
-              </div>
+              {hasValue(businessDetails.weekendHours) && (
+                <p>
+                  <span className="block text-[#F5F7FA] text-xs uppercase tracking-wider mb-1">
+                    Weekend
+                  </span>
+                  Saturday and Sunday
+                  <br />
+                  Appointments only
+                  <br />
+                  <a
+                    href={businessDetails.consultationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Book a weekend appointment on Picktime (opens in a new tab)"
+                    className="inline-block mt-1.5 text-xs font-medium text-[#C9A14A] hover:text-[#B08B3E] underline underline-offset-2 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+                  >
+                    Book appointment
+                  </a>
+                </p>
+              )}
             </div>
           </div>
         </div>
+
+        <div className="mt-8 pt-6 border-t border-[#C9A14A]/20 space-y-2 text-center sm:text-left">
+          <p className="text-[#AAB2BD] text-sm leading-relaxed">
+            {getCompanyDisclosure()}
+          </p>
+          {hasValue(businessDetails.registeredOffice) && (
+            <p className="text-[#AAB2BD] text-sm leading-relaxed">
+              Address: {businessDetails.registeredOffice}.
+            </p>
+          )}
+        </div>
       </div>
 
-      {/* Footer Bottom Bar */}
-      <div className="bg-[#081524] border-t border-[#C9A14A] border-opacity-20">
-        <div className="container mx-auto px-6 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-[#AAB2BD] text-center text-sm">
-              © {new Date().getFullYear()} Sterling Crest Accountants LTD. All
+      <div className="bg-[#081524] border-t border-[#C9A14A]/20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-4">
+          <div className="flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-2 text-center">
+            <p className="text-[#AAB2BD] text-sm">
+              © {new Date().getFullYear()} {businessDetails.legalName}. All
               rights reserved.
             </p>
-            <p className="text-[#AAB2BD] text-center text-sm">
-              Made with <span className="text-[#C9A14A]">❤️</span> by{" "}
-              <a
-                href="https://www.awaisdigitalservices.co.uk"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C9A14A] hover:underline transition-colors"
-              >
-                ADS
-              </a>
+            <p className="text-[#AAB2BD] text-sm">
+              Website by{" "}
+              {creditIsLink ? (
+                <a
+                  href={businessDetails.creditUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#C9A14A] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+                >
+                  {businessDetails.creditName}
+                </a>
+              ) : (
+                <span>{businessDetails.creditName}</span>
+              )}
             </p>
           </div>
         </div>
