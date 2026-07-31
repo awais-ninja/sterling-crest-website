@@ -2,7 +2,7 @@ export const homepageFaqs = [
   {
     question: "What accountancy services do you provide?",
     answer:
-      "We provide bookkeeping, company accounts, corporation tax, self assessment, payroll and PAYE, VAT returns, CIS returns, property and landlord accounting, and business advisory support.",
+      "We provide accounting and compliance support, tax services, business advisory and property services. That includes bookkeeping, annual accounts, payroll, VAT, self assessment, corporation tax, landlord accounting and related advisory work.",
   },
   {
     question: "Do you work with both individuals and businesses?",
@@ -97,7 +97,7 @@ export const faqCategories = [
       {
         question: "Do you help with HMRC submissions?",
         answer:
-          "Yes. Depending on the engagement, we can prepare and support submission of relevant returns such as self assessment, corporation tax, VAT and CIS.",
+          "Yes. Depending on the engagement, we can prepare and support submission of relevant returns such as self assessment, corporation tax, VAT and property tax filings.",
       },
       {
         question: "Can you help with HMRC correspondence?",

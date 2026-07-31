@@ -17,13 +17,13 @@ export const metadata = createPageMetadata({
 export default function AboutPage() {
   return (
     <PageShell>
-      <section className="relative w-full bg-gradient-to-br from-[#0B1C2D] via-[#081524] to-[#050E18] py-16 md:py-24 pt-24 md:pt-32">
+      <section className="relative w-full bg-gradient-to-br from-surface via-surface-elevated to-surface-deep py-16 md:py-24 pt-24 md:pt-32">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#F5F7FA] mb-5">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink mb-5">
               About Sterling Crest Accountants
             </h1>
-            <p className="text-lg text-[#AAB2BD] leading-relaxed mb-8">
+            <p className="text-lg text-ink-muted leading-relaxed mb-8">
               {businessDetails.tradingName} provides practical accounting and
               tax support for individuals, landlords and growing businesses.
               We focus on organised records, clear explanations and
@@ -39,17 +39,17 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-[#0B1C2D] py-14 md:py-20">
+      <section className="bg-surface py-14 md:py-20">
         <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
-          <h2 className="text-3xl font-bold text-[#F5F7FA] mb-4">
+          <h2 className="text-3xl font-bold text-ink mb-4">
             Our purpose and approach
           </h2>
-          <p className="text-[#AAB2BD] leading-relaxed mb-4">
+          <p className="text-ink-muted leading-relaxed mb-4">
             We help clients keep financial records organised, meet filing
             obligations and understand their numbers in plain English. Work is
             scoped clearly before it begins, and we agree fees in advance.
           </p>
-          <p className="text-[#AAB2BD] leading-relaxed">
+          <p className="text-ink-muted leading-relaxed">
             {hasValue(businessDetails.yearsCombinedExperience) && (
               <>
                 Our team brings {businessDetails.yearsCombinedExperience} years’
@@ -63,9 +63,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-[#081524] py-14 md:py-20">
+      <section className="bg-surface-elevated py-14 md:py-20">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
-          <h2 className="text-3xl font-bold text-[#F5F7FA] mb-8 text-center">
+          <h2 className="text-3xl font-bold text-ink mb-8 text-center">
             Clients we support
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -83,18 +83,18 @@ export default function AboutPage() {
                 text: "Property income reporting and expense organisation for UK rental income.",
               },
               {
-                title: "Contractors",
-                text: "CIS and related tax reporting support for construction related work.",
+                title: "Start ups and growing businesses",
+                text: "Company formation, cashflow forecasting and practical advisory support as you scale.",
               },
             ].map((item) => (
               <div
                 key={item.title}
-                className="p-6 rounded-xl border border-[#C9A14A]/20 bg-[#0B1C2D]"
+                className="p-6 rounded-xl border border-gold/20 bg-surface"
               >
-                <h3 className="text-xl font-semibold text-[#F5F7FA] mb-2">
+                <h3 className="text-xl font-semibold text-ink mb-2">
                   {item.title}
                 </h3>
-                <p className="text-[#AAB2BD] text-sm leading-relaxed">
+                <p className="text-ink-muted text-sm leading-relaxed">
                   {item.text}
                 </p>
               </div>
@@ -103,9 +103,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-[#0B1C2D] py-14 md:py-20">
+      <section className="bg-surface py-14 md:py-20">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
-          <h2 className="text-3xl font-bold text-[#F5F7FA] mb-8 text-center">
+          <h2 className="text-3xl font-bold text-ink mb-8 text-center">
             Working principles
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -129,32 +129,32 @@ export default function AboutPage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="p-6 rounded-xl border border-[#C9A14A]/20 bg-[#081524]"
+                className="p-6 rounded-xl border border-gold/20 bg-surface-elevated"
               >
-                <h3 className="text-xl font-semibold text-[#F5F7FA] mb-2">
+                <h3 className="text-xl font-semibold text-ink mb-2">
                   {item.title}
                 </h3>
-                <p className="text-[#AAB2BD] leading-relaxed">{item.text}</p>
+                <p className="text-ink-muted leading-relaxed">{item.text}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-[#081524] py-14 md:py-20">
+      <section className="bg-surface-elevated py-14 md:py-20">
         <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
-          <h2 className="text-3xl font-bold text-[#F5F7FA] mb-4">
+          <h2 className="text-3xl font-bold text-ink mb-4">
             Company information
           </h2>
-          <p className="text-[#AAB2BD] leading-relaxed mb-3">
+          <p className="text-ink-muted leading-relaxed mb-3">
             {getCompanyDisclosure()}
           </p>
           {hasValue(businessDetails.registeredOffice) && (
-            <p className="text-[#AAB2BD] leading-relaxed mb-3">
+            <p className="text-ink-muted leading-relaxed mb-3">
               Registered office: {businessDetails.registeredOffice}
             </p>
           )}
-          <p className="text-[#AAB2BD] leading-relaxed text-sm">
+          <p className="text-ink-muted leading-relaxed text-sm">
             Optional details such as professional memberships, AML supervisory
             body, ICO registration and team profiles will be published here once
             confirmed by management.
@@ -162,12 +162,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gradient-to-b from-[#081524] to-[#050E18]">
+      <section className="py-16 bg-gradient-to-b from-surface-elevated to-surface-deep">
         <div className="container mx-auto px-4 sm:px-6 text-center max-w-3xl">
-          <h2 className="text-3xl font-bold text-[#F5F7FA] mb-4">
+          <h2 className="text-3xl font-bold text-ink mb-4">
             Work with Sterling Crest
           </h2>
-          <p className="text-[#AAB2BD] mb-8">
+          <p className="text-ink-muted mb-8">
             Tell us what you need and we will outline a clear next step.{" "}
             {businessDetails.responseTime}
           </p>

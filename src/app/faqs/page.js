@@ -19,13 +19,13 @@ export default function FAQsPage() {
   return (
     <PageShell>
       <JsonLd data={getFaqSchema(allFaqs)} />
-      <section className="relative w-full bg-gradient-to-br from-[#0B1C2D] via-[#081524] to-[#050E18] py-16 md:py-24 pt-24 md:pt-32">
+      <section className="relative w-full bg-gradient-to-br from-surface via-surface-elevated to-surface-deep py-16 md:py-24 pt-24 md:pt-32">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#F5F7FA] mb-5">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink mb-5">
               Frequently asked questions
             </h1>
-            <p className="text-lg text-[#AAB2BD] leading-relaxed mb-8">
+            <p className="text-lg text-ink-muted leading-relaxed mb-8">
               Practical answers about our services, fees and working process. If
               your question is not listed, send us an enquiry.
             </p>
@@ -38,11 +38,11 @@ export default function FAQsPage() {
         <section
           key={category.id}
           className={`py-12 md:py-16 ${
-            index % 2 === 0 ? "bg-[#0B1C2D]" : "bg-[#081524]"
+            index % 2 === 0 ? "bg-surface" : "bg-surface-elevated"
           }`}
         >
           <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#F5F7FA] mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-ink mb-6">
               {category.title}
             </h2>
             <Accordion items={category.items} />
@@ -50,12 +50,12 @@ export default function FAQsPage() {
         </section>
       ))}
 
-      <section className="py-16 bg-gradient-to-b from-[#081524] to-[#050E18]">
+      <section className="py-16 bg-gradient-to-b from-surface-elevated to-surface-deep">
         <div className="container mx-auto px-4 sm:px-6 text-center max-w-3xl">
-          <h2 className="text-3xl font-bold text-[#F5F7FA] mb-4">
+          <h2 className="text-3xl font-bold text-ink mb-4">
             Still have questions?
           </h2>
-          <p className="text-[#AAB2BD] mb-8">
+          <p className="text-ink-muted mb-8">
             Send a short enquiry and we will help with the next step.
           </p>
           <ConsultationCta location="faqs_cta">Arrange Your Consultation</ConsultationCta>

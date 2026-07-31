@@ -51,7 +51,7 @@ export const businessDetails = {
     "Practical accounting and tax support for individuals, landlords, self employed professionals and growing businesses across the UK.",
 
   creditUrl: "https://www.awaisdigitalservices.co.uk",
-  creditName: "Awais Digital Services",
+  creditName: "ADS",
 
   trustStats: [
     {
@@ -74,30 +74,14 @@ export const businessDetails = {
   ],
 };
 
-/** Footer / mega menu service subsets (slugs from src/data/services.js). */
+/** Footer service subset (slugs from src/data/services.js). */
 export const footerServiceSlugs = [
   "bookkeeping",
-  "company-accounts",
-  "corporation-tax",
+  "annual-accounts",
   "self-assessment",
+  "corporation-tax",
   "payroll",
-  "vat-returns",
-];
-
-export const megaMenuColumns = [
-  [
-    "bookkeeping",
-    "corporation-tax",
-    "payroll",
-    "cis-returns",
-    "business-advisory",
-  ],
-  [
-    "company-accounts",
-    "self-assessment",
-    "vat-returns",
-    "property-accounting",
-  ],
+  "landlord-accounting",
 ];
 
 /** Returns true when a config string has a usable public value. */
@@ -164,16 +148,26 @@ export const clientTypeOptions = [
 ];
 
 export const serviceOptions = [
+  "Annual Accounts",
   "Bookkeeping",
-  "Company accounts",
-  "Corporation tax",
-  "Self assessment",
-  "Payroll and PAYE",
-  "VAT returns",
-  "CIS returns",
-  "Property and landlord accounts",
-  "Business advisory",
-  "Company formation",
+  "Management Accounts",
+  "Payroll",
+  "VAT Returns",
+  "Confirmation Statement",
+  "Self Assessment",
+  "Corporation Tax",
+  "Capital Gains Tax",
+  "Tax Planning",
+  "Non Resident Landlord Tax",
+  "Startup Support",
+  "Company Formation",
+  "Cashflow Forecasting",
+  "CFO Advisory",
+  "Business Growth Planning",
+  "Landlord Accounting",
+  "SPV Accounting",
+  "Property Tax Returns",
+  "HMO / Holiday Let Accounting",
   "Other",
 ];
 

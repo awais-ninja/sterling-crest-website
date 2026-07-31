@@ -36,7 +36,7 @@ export default function PrivacyPage() {
             Email:{" "}
             <a
               href={`mailto:${businessDetails.email}`}
-              className="text-[#C9A14A] underline break-all"
+              className="text-gold underline break-all"
             >
               {businessDetails.email}
             </a>
@@ -87,20 +87,20 @@ export default function PrivacyPage() {
           <p>Depending on the activity, we rely on one or more of the following:</p>
           <ul className="list-disc pl-5 space-y-1">
             <li>
-              <strong className="text-[#F5F7FA]">Contract</strong>, where processing is
+              <strong className="text-ink">Contract</strong>, where processing is
               necessary to provide agreed services
             </li>
             <li>
-              <strong className="text-[#F5F7FA]">Legal obligation</strong>, including tax,
+              <strong className="text-ink">Legal obligation</strong>, including tax,
               accounting and anti money laundering requirements where applicable
             </li>
             <li>
-              <strong className="text-[#F5F7FA]">Legitimate interests</strong>, such as
+              <strong className="text-ink">Legitimate interests</strong>, such as
               responding to enquiries, improving service delivery and securing our website,
               balanced against your rights
             </li>
             <li>
-              <strong className="text-[#F5F7FA]">Consent</strong>, where required, for
+              <strong className="text-ink">Consent</strong>, where required, for
               example optional analytics cookies
             </li>
           </ul>
@@ -170,7 +170,7 @@ export default function PrivacyPage() {
               href="https://ico.org.uk"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#C9A14A] underline"
+              className="text-gold underline"
             >
               ico.org.uk
             </a>
@@ -183,7 +183,7 @@ export default function PrivacyPage() {
             Essential cookies may be used for basic site operation and security.
             Non essential analytics cookies are only used if configured and
             consented to. See our{" "}
-            <Link href="/cookies" className="text-[#C9A14A] underline">
+            <Link href="/cookies" className="text-gold underline">
               Cookie Policy
             </Link>{" "}
             for details.
@@ -197,7 +197,7 @@ export default function PrivacyPage() {
           </p>
         </LegalSection>
 
-        <p className="text-sm text-[#AAB2BD]">
+        <p className="text-sm text-ink-muted">
           Last updated: {legalConfig.privacyLastUpdated}.{" "}
           {getCompanyDisclosure()}
         </p>
@@ -208,13 +208,13 @@ export default function PrivacyPage() {
 
 function LegalHero({ title, intro }) {
   return (
-    <section className="relative w-full bg-gradient-to-br from-[#0B1C2D] via-[#081524] to-[#050E18] py-16 md:py-24 pt-24 md:pt-32">
+    <section className="relative w-full bg-gradient-to-br from-surface via-surface-elevated to-surface-deep py-16 md:py-24 pt-24 md:pt-32">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#F5F7FA] mb-5">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink mb-5">
             {title}
           </h1>
-          <p className="text-lg text-[#AAB2BD] leading-relaxed">{intro}</p>
+          <p className="text-lg text-ink-muted leading-relaxed">{intro}</p>
         </div>
       </div>
     </section>
@@ -223,7 +223,7 @@ function LegalHero({ title, intro }) {
 
 function LegalBody({ children }) {
   return (
-    <section className="relative w-full bg-[#0B1C2D] py-14 md:py-20">
+    <section className="relative w-full bg-surface py-14 md:py-20">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-4xl mx-auto space-y-6">{children}</div>
       </div>
@@ -233,8 +233,8 @@ function LegalBody({ children }) {
 
 function LegalSection({ title, children }) {
   return (
-    <div className="bg-gradient-to-br from-[#081524] to-[#0B1C2D] p-6 md:p-8 rounded-xl border border-[#C9A14A]/20 space-y-3 text-[#AAB2BD] leading-relaxed">
-      <h2 className="text-xl md:text-2xl font-bold text-[#F5F7FA]">{title}</h2>
+    <div className="bg-gradient-to-br from-surface-elevated to-surface p-6 md:p-8 rounded-xl border border-gold/20 space-y-3 text-ink-muted leading-relaxed">
+      <h2 className="text-xl md:text-2xl font-bold text-ink">{title}</h2>
       {children}
     </div>
   );

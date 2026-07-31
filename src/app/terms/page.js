@@ -19,13 +19,13 @@ export default function TermsPage() {
   // Confirm liability wording, engagement terms and any indemnity statements.
   return (
     <PageShell>
-      <section className="relative w-full bg-gradient-to-br from-[#0B1C2D] via-[#081524] to-[#050E18] py-16 md:py-24 pt-24 md:pt-32">
+      <section className="relative w-full bg-gradient-to-br from-surface via-surface-elevated to-surface-deep py-16 md:py-24 pt-24 md:pt-32">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#F5F7FA] mb-5">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink mb-5">
               Terms and Conditions
             </h1>
-            <p className="text-lg text-[#AAB2BD] leading-relaxed">
+            <p className="text-lg text-ink-muted leading-relaxed">
               These terms govern use of the {businessDetails.tradingName}{" "}
               website. Separate engagement terms apply once a client
               relationship is formally accepted.
@@ -34,7 +34,7 @@ export default function TermsPage() {
         </div>
       </section>
 
-      <section className="relative w-full bg-[#0B1C2D] py-14 md:py-20">
+      <section className="relative w-full bg-surface py-14 md:py-20">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto space-y-6">
             <Term
@@ -90,7 +90,7 @@ export default function TermsPage() {
                   : ""
               }`}
             />
-            <p className="text-sm text-[#AAB2BD]">
+            <p className="text-sm text-ink-muted">
               Last updated: {legalConfig.termsLastUpdated}.
             </p>
           </div>
@@ -102,9 +102,9 @@ export default function TermsPage() {
 
 function Term({ title, body }) {
   return (
-    <div className="bg-gradient-to-br from-[#081524] to-[#0B1C2D] p-6 md:p-8 rounded-xl border border-[#C9A14A]/20">
-      <h2 className="text-xl md:text-2xl font-bold text-[#F5F7FA] mb-3">{title}</h2>
-      <p className="text-[#AAB2BD] leading-relaxed">{body}</p>
+    <div className="bg-gradient-to-br from-surface-elevated to-surface p-6 md:p-8 rounded-xl border border-gold/20">
+      <h2 className="text-xl md:text-2xl font-bold text-ink mb-3">{title}</h2>
+      <p className="text-ink-muted leading-relaxed">{body}</p>
     </div>
   );
 }

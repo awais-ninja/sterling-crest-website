@@ -1,8 +1,10 @@
+import { cookies } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { businessDetails } from "@/config/business";
 import { getSiteUrl, siteConfig } from "@/config/site";
 import AnalyticsLoader from "@/components/AnalyticsLoader";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,14 +67,25 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+function resolveTheme(value) {
+  return value === "light" || value === "dark" ? value : "dark";
+}
+
+export default async function RootLayout({ children }) {
+  const cookieStore = await cookies();
+  const theme = resolveTheme(cookieStore.get("sc-theme")?.value);
+
   return (
-    <html lang="en-GB">
+    <html lang="en-GB" data-theme={theme} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-surface text-ink`}
+        style={{ colorScheme: theme }}
+        suppressHydrationWarning
       >
-        {children}
-        <AnalyticsLoader />
+        <ThemeProvider defaultTheme={theme}>
+          {children}
+          <AnalyticsLoader />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -2,14 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Theme tokens. Default (:root) is dark for no-JS; the head script sets
+  data-theme from localStorage before paint to avoid a flash.
+*/
 :root {
-  --color-navy-deep: #0b1c2d;
-  --color-navy-dark: #081524;
-  --color-navy-darker: #050e18;
-  --color-gold: #c9a14a;
-  --color-gold-dark: #b08b3e;
-  --color-grey-muted: #aab2bd;
-  --color-white-soft: #f5f7fa;
+  --surface: 11 28 45;
+  --surface-elevated: 8 21 36;
+  --surface-deep: 5 14 24;
+  --ink: 245 247 250;
+  --ink-muted: 170 178 189;
+  --gold: 201 161 74;
+  --gold-dark: 176 139 62;
+  --on-gold: 11 28 45;
+  color-scheme: dark;
+}
+
+html[data-theme="dark"] {
+  --surface: 11 28 45;
+  --surface-elevated: 8 21 36;
+  --surface-deep: 5 14 24;
+  --ink: 245 247 250;
+  --ink-muted: 170 178 189;
+  --gold: 201 161 74;
+  --gold-dark: 176 139 62;
+  --on-gold: 11 28 45;
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  --surface: 255 255 255;
+  --surface-elevated: 245 247 250;
+  --surface-deep: 238 241 245;
+  --ink: 0 0 0;
+  --ink-muted: 0 0 0;
+  --gold: 188 117 31;
+  --gold-dark: 164 98 24;
+  --on-gold: 255 255 255;
+  color-scheme: light;
 }
 
 * {
@@ -37,8 +67,8 @@ html {
 }
 
 body {
-  background: var(--color-navy-deep);
-  color: var(--color-white-soft);
+  background: rgb(var(--surface));
+  color: rgb(var(--ink));
   font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -51,7 +81,7 @@ img {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-gold);
+  outline: 2px solid rgb(var(--gold));
   outline-offset: 2px;
 }
 
@@ -77,4 +107,11 @@ img {
   overflow: visible;
   clip: auto;
   white-space: normal;
+}
+
+/* Logo includes white type — navy plate in light mode only. */
+html[data-theme="light"] .theme-logo {
+  background: #0b1c2d;
+  border-radius: 0.5rem;
+  padding: 0.35rem 0.55rem;
 }

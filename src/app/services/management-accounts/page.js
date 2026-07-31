@@ -1,9 +1,9 @@
-import ServicePageContent from "@/components/ServicePageContent";
+﻿import ServicePageContent from "@/components/ServicePageContent";
 import { getServiceBySlug } from "@/data/services";
 import { createPageMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 
-const SLUG = "company-accounts";
+const SLUG = "management-accounts";
 
 export function generateMetadata() {
   const service = getServiceBySlug(SLUG);

@@ -49,6 +49,30 @@ const nextConfig = {
   },
   reactStrictMode: true,
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: "/services/company-accounts",
+        destination: "/services/annual-accounts",
+        permanent: true,
+      },
+      {
+        source: "/services/property-accounting",
+        destination: "/services/landlord-accounting",
+        permanent: true,
+      },
+      {
+        source: "/services/business-advisory",
+        destination: "/services/business-growth-planning",
+        permanent: true,
+      },
+      {
+        source: "/services/cis-returns",
+        destination: "/services",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

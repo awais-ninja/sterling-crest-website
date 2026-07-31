@@ -27,16 +27,16 @@ export default function HowItWorksSection() {
   ];
 
   return (
-    <section id="how-it-works" className="relative w-full bg-[#0B1C2D] py-20 md:py-24">
+    <section id="how-it-works" className="relative w-full bg-surface py-20 md:py-24">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12 md:mb-16">
-          <p className="text-[#C9A14A] text-sm font-semibold uppercase tracking-wider mb-3">
+          <p className="text-gold text-sm font-semibold uppercase tracking-wider mb-3">
             Our process
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#F5F7FA] mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink mb-4">
             A clear working process
           </h2>
-          <p className="text-lg text-[#AAB2BD] max-w-3xl mx-auto">
+          <p className="text-lg text-ink-muted max-w-3xl mx-auto">
             Four practical steps from first conversation to completed work.
           </p>
         </div>
@@ -45,15 +45,15 @@ export default function HowItWorksSection() {
           {steps.map((step) => (
             <div
               key={step.number}
-              className="bg-gradient-to-br from-[#081524] to-[#0B1C2D] p-6 md:p-8 rounded-2xl border border-[#C9A14A]/20"
+              className="bg-gradient-to-br from-surface-elevated to-surface p-6 md:p-8 rounded-2xl border border-gold/20"
             >
-              <div className="text-4xl font-bold text-[#C9A14A]/30 mb-3" aria-hidden="true">
+              <div className="text-4xl font-bold text-gold/30 mb-3" aria-hidden="true">
                 {step.number}
               </div>
-              <h3 className="text-xl font-semibold text-[#F5F7FA] mb-3">
+              <h3 className="text-xl font-semibold text-ink mb-3">
                 {step.title}
               </h3>
-              <p className="text-[#AAB2BD] leading-relaxed">{step.description}</p>
+              <p className="text-ink-muted leading-relaxed">{step.description}</p>
             </div>
           ))}
         </div>

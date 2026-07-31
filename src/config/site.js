@@ -33,12 +33,19 @@ export const siteConfig = {
 export const navigation = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
+  { href: "/who-we-serve", label: "Who We Serve" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
 export const legalLinks = [
   { href: "/privacy", label: "Privacy Policy" },
-  { href: "/terms", label: "Terms and Conditions" },
+  { href: "/terms", label: "Terms & Conditions" },
   { href: "/cookies", label: "Cookie Policy" },
+];
+
+export const footerLegalLinks = [
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms & Conditions" },
+  { href: "/site-map", label: "Sitemap" },
 ];

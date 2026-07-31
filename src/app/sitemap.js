@@ -1,5 +1,6 @@
 import { getSiteUrl } from "@/config/site";
 import { services } from "@/data/services";
+import { audiences } from "@/data/audiences";
 
 export default function sitemap() {
   const siteUrl = getSiteUrl();
@@ -9,8 +10,10 @@ export default function sitemap() {
     "",
     "/about",
     "/services",
+    "/who-we-serve",
     "/contact",
     "/faqs",
+    "/site-map",
     "/privacy",
     "/terms",
     "/cookies",
@@ -18,7 +21,12 @@ export default function sitemap() {
     url: `${siteUrl}${path}`,
     lastModified,
     changeFrequency: path === "" ? "weekly" : "monthly",
-    priority: path === "" ? 1 : path === "/contact" || path === "/services" ? 0.9 : 0.7,
+    priority:
+      path === ""
+        ? 1
+        : path === "/contact" || path === "/services" || path === "/who-we-serve"
+          ? 0.9
+          : 0.7,
   }));
 
   const serviceRoutes = services.map((service) => ({
@@ -28,5 +36,12 @@ export default function sitemap() {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...serviceRoutes];
+  const audienceRoutes = audiences.map((audience) => ({
+    url: `${siteUrl}/who-we-serve/${audience.slug}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
+  return [...staticRoutes, ...serviceRoutes, ...audienceRoutes];
 }

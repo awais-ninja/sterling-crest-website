@@ -1,26 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
-import { services } from "@/data/services";
+import { getFeaturedServices } from "@/data/services";
 import { ServiceIcon } from "@/components/icons/ServiceIcons";
 
 export default function ServicesSection() {
-  const featured = services.slice(0, 6);
+  const featured = getFeaturedServices(6);
 
   return (
     <section
       id="services"
       className="relative w-full py-20 md:py-24"
-      style={{ background: "linear-gradient(to bottom, #0B1C2D, #081524)" }}
+      style={{ background: "linear-gradient(to bottom, rgb(var(--surface)), rgb(var(--surface-elevated)))" }}
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12 md:mb-16">
-          <p className="text-[#C9A14A] text-sm font-semibold uppercase tracking-wider mb-3">
+          <p className="text-gold text-sm font-semibold uppercase tracking-wider mb-3">
             What we offer
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#F5F7FA] mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink mb-4">
             Accountancy and tax services
           </h2>
-          <p className="text-lg text-[#AAB2BD] max-w-3xl mx-auto">
+          <p className="text-lg text-ink-muted max-w-3xl mx-auto">
             From day to day bookkeeping to year end accounts and HMRC
             submissions. Request a tailored quotation for the support you need.
           </p>
@@ -42,16 +42,16 @@ export default function ServicesSection() {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group flex items-start gap-4 bg-gradient-to-br from-[#081524] to-[#0B1C2D] p-5 rounded-xl border border-[#C9A14A]/20 hover:border-[#C9A14A]/50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+                className="group flex items-start gap-4 bg-gradient-to-br from-surface-elevated to-surface p-5 rounded-xl border border-gold/20 hover:border-gold/50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
               >
-                <div className="w-12 h-12 rounded-lg bg-[#C9A14A]/10 text-[#C9A14A] flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 rounded-lg bg-gold/10 text-gold flex items-center justify-center shrink-0">
                   <ServiceIcon slug={service.slug} className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-[#F5F7FA] group-hover:text-[#C9A14A] transition-colors mb-1">
+                  <h3 className="text-lg font-semibold text-ink group-hover:text-gold transition-colors mb-1">
                     {service.title}
                   </h3>
-                  <p className="text-[#AAB2BD] text-sm leading-relaxed">
+                  <p className="text-ink-muted text-sm leading-relaxed">
                     {service.summary}
                   </p>
                 </div>
@@ -63,7 +63,7 @@ export default function ServicesSection() {
         <div className="text-center">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 text-[#C9A14A] font-semibold text-lg hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+            className="inline-flex items-center gap-2 text-gold font-semibold text-lg hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           >
             View all services
             <span aria-hidden="true">→</span>

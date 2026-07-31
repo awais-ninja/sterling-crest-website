@@ -26,17 +26,17 @@ export default function WhySection() {
     <section
       id="why-us"
       className="relative w-full py-20 md:py-24"
-      style={{ background: "linear-gradient(to bottom, #081524, #050E18)" }}
+      style={{ background: "linear-gradient(to bottom, rgb(var(--surface-elevated)), rgb(var(--surface-deep)))" }}
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12 md:mb-16">
-          <p className="text-[#C9A14A] text-sm font-semibold uppercase tracking-wider mb-3">
+          <p className="text-gold text-sm font-semibold uppercase tracking-wider mb-3">
             Our approach
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#F5F7FA] mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink mb-4">
             How we work with you
           </h2>
-          <p className="text-lg text-[#AAB2BD] max-w-3xl mx-auto">
+          <p className="text-lg text-ink-muted max-w-3xl mx-auto">
             Practical benefits that help day to day finances and statutory
             filings run more smoothly.
           </p>
@@ -46,15 +46,15 @@ export default function WhySection() {
           {values.map((value) => (
             <div
               key={value.title}
-              className="bg-gradient-to-br from-[#0B1C2D] to-[#081524] p-6 md:p-8 rounded-2xl border border-[#C9A14A]/20"
+              className="bg-gradient-to-br from-surface to-surface-elevated p-6 md:p-8 rounded-2xl border border-gold/20"
             >
               <div className="flex items-start gap-4">
-                <div className="w-1 h-12 bg-[#C9A14A] rounded-full shrink-0" aria-hidden="true" />
+                <div className="w-1 h-12 bg-gold rounded-full shrink-0" aria-hidden="true" />
                 <div>
-                  <h3 className="text-xl font-semibold text-[#F5F7FA] mb-2">
+                  <h3 className="text-xl font-semibold text-ink mb-2">
                     {value.title}
                   </h3>
-                  <p className="text-[#AAB2BD] leading-relaxed">{value.description}</p>
+                  <p className="text-ink-muted leading-relaxed">{value.description}</p>
                 </div>
               </div>
             </div>

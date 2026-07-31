@@ -37,7 +37,7 @@ export default function TopBar() {
   if (!hasLeft && !hasRight) return null;
 
   return (
-    <div className="bg-[#081524] border-b border-[#C9A14A]/25 text-[0.75rem] sm:text-[0.8125rem] text-[#AAB2BD]">
+    <div className="bg-surface-elevated border-b border-gold/25 text-[0.75rem] sm:text-[0.8125rem] text-ink-muted">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex flex-col md:flex-row flex-wrap items-center justify-center md:justify-between gap-x-4 gap-y-1.5 py-2 min-h-9 text-center md:text-left">
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-0 gap-y-1">
@@ -46,7 +46,7 @@ export default function TopBar() {
                 <a
                   href={emailHref || `mailto:${businessDetails.email}`}
                   aria-label={`Email ${businessDetails.email}`}
-                  className="inline-flex items-center gap-1.5 text-[#C9A14A] hover:text-[#B08B3E] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+                  className="inline-flex items-center gap-1.5 text-gold hover:text-gold-dark transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                   onClick={() =>
                     trackEvent(AnalyticsEvents.EMAIL_CLICK, {
                       location: "top_bar",
@@ -64,7 +64,7 @@ export default function TopBar() {
                 <a
                   href={phoneHref}
                   aria-label={`Call ${businessDetails.phone}`}
-                  className="inline-flex items-center gap-1.5 text-[#F5F7FA] hover:text-[#C9A14A] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+                  className="inline-flex items-center gap-1.5 text-ink hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                   onClick={() =>
                     trackEvent(AnalyticsEvents.PHONE_CLICK, {
                       location: "top_bar",
@@ -84,7 +84,7 @@ export default function TopBar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`WhatsApp ${businessDetails.whatsappNumber}`}
-                  className="inline-flex items-center gap-1.5 text-[#F5F7FA] hover:text-[#C9A14A] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+                  className="inline-flex items-center gap-1.5 text-ink hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                   onClick={() =>
                     trackEvent(AnalyticsEvents.WHATSAPP_CLICK, {
                       location: "top_bar",
@@ -112,25 +112,6 @@ export default function TopBar() {
                       " · "}
                     {hasValue(businessDetails.weekendHours) &&
                       businessDetails.weekendHours}
-                    {hasValue(businessDetails.consultationUrl) && (
-                      <>
-                        {" · "}
-                        <a
-                          href={businessDetails.consultationUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="Book an appointment on Picktime (opens in a new tab)"
-                          className="text-[#C9A14A] hover:text-[#B08B3E] underline underline-offset-2 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
-                          onClick={() =>
-                            trackEvent(AnalyticsEvents.CONSULTATION_CLICK, {
-                              location: "top_bar_weekend",
-                            })
-                          }
-                        >
-                          Book appointment
-                        </a>
-                      </>
-                    )}
                   </span>
                 </span>
               </TopItem>
@@ -150,7 +131,7 @@ export default function TopBar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${social.label} (opens in a new tab)`}
-                  className="text-[#F5F7FA] hover:text-[#C9A14A] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+                  className="text-ink hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                 >
                   {social.label}
                 </a>
@@ -168,7 +149,7 @@ function TopItem({ children, showDivider = true }) {
     <span className="inline-flex items-center">
       {showDivider && (
         <span
-          className="mx-2.5 sm:mx-3 text-[#C9A14A]/30 select-none"
+          className="mx-2.5 sm:mx-3 text-gold/30 select-none"
           aria-hidden="true"
         >
           |
@@ -205,7 +186,7 @@ function WhatsAppIcon() {
 
 function ClockIcon() {
   return (
-    <svg className="w-3.5 h-3.5 shrink-0 text-[#C9A14A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <svg className="w-3.5 h-3.5 shrink-0 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
   );

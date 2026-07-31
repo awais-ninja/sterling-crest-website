@@ -4,6 +4,7 @@
  */
 
 const CONSENT_KEY = "sc_cookie_consent";
+export const OPEN_COOKIE_SETTINGS_EVENT = "sc-open-cookie-settings";
 
 export function getStoredConsent() {
   if (typeof window === "undefined") return null;
@@ -25,6 +26,11 @@ export function storeConsent(consent) {
     })
   );
   window.dispatchEvent(new Event("sc-consent-updated"));
+}
+
+export function openCookieSettings() {
+  if (typeof window === "undefined") return;
+  window.dispatchEvent(new Event(OPEN_COOKIE_SETTINGS_EVENT));
 }
 
 export function hasAnalyticsConsent() {

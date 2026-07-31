@@ -19,10 +19,10 @@ export function ConsultationCta({
 }) {
   const base =
     variant === "primary"
-      ? "bg-[#C9A14A] text-[#0B1C2D] hover:bg-[#B08B3E] shadow-md hover:shadow-lg"
-      : "border-2 border-[#C9A14A] text-[#C9A14A] bg-transparent hover:bg-[#C9A14A] hover:text-[#0B1C2D]";
+      ? "bg-gold text-on-gold hover:bg-gold-dark shadow-md hover:shadow-lg"
+      : "border-2 border-gold text-gold bg-transparent hover:bg-gold hover:text-on-gold";
 
-  const classes = `inline-flex items-center justify-center min-h-12 px-8 py-3 rounded-md font-semibold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A] ${base} ${className}`;
+  const classes = `inline-flex items-center justify-center min-h-12 px-8 py-3 rounded-md font-semibold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold ${base} ${className}`;
 
   const label =
     ariaLabel ||

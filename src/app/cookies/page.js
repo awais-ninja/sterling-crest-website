@@ -15,13 +15,13 @@ export default function CookiesPage() {
   // MANAGEMENT/LEGAL REVIEW REQUIRED before public launch.
   return (
     <PageShell>
-      <section className="relative w-full bg-gradient-to-br from-[#0B1C2D] via-[#081524] to-[#050E18] py-16 md:py-24 pt-24 md:pt-32">
+      <section className="relative w-full bg-gradient-to-br from-surface via-surface-elevated to-surface-deep py-16 md:py-24 pt-24 md:pt-32">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#F5F7FA] mb-5">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink mb-5">
               Cookie Policy
             </h1>
-            <p className="text-lg text-[#AAB2BD] leading-relaxed">
+            <p className="text-lg text-ink-muted leading-relaxed">
               This policy explains how {businessDetails.tradingName} uses
               cookies and similar technologies on this website.
             </p>
@@ -29,9 +29,9 @@ export default function CookiesPage() {
         </div>
       </section>
 
-      <section className="relative w-full bg-[#0B1C2D] py-14 md:py-20">
+      <section className="relative w-full bg-surface py-14 md:py-20">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto space-y-6 text-[#AAB2BD] leading-relaxed">
+          <div className="max-w-4xl mx-auto space-y-6 text-ink-muted leading-relaxed">
             <Card title="What are cookies?">
               <p>
                 Cookies are small text files stored on your device when you
@@ -83,7 +83,7 @@ export default function CookiesPage() {
               </p>
               <p>
                 For more about how we handle personal data, see our{" "}
-                <Link href="/privacy" className="text-[#C9A14A] underline">
+                <Link href="/privacy" className="text-gold underline">
                   Privacy Policy
                 </Link>
                 .
@@ -95,7 +95,7 @@ export default function CookiesPage() {
                 Questions about cookies can be sent to{" "}
                 <a
                   href={`mailto:${businessDetails.email}`}
-                  className="text-[#C9A14A] underline break-all"
+                  className="text-gold underline break-all"
                 >
                   {businessDetails.email}
                 </a>
@@ -115,8 +115,8 @@ export default function CookiesPage() {
 
 function Card({ title, children }) {
   return (
-    <div className="bg-gradient-to-br from-[#081524] to-[#0B1C2D] p-6 md:p-8 rounded-xl border border-[#C9A14A]/20 space-y-3">
-      <h2 className="text-xl md:text-2xl font-bold text-[#F5F7FA]">{title}</h2>
+    <div className="bg-gradient-to-br from-surface-elevated to-surface p-6 md:p-8 rounded-xl border border-gold/20 space-y-3">
+      <h2 className="text-xl md:text-2xl font-bold text-ink">{title}</h2>
       {children}
     </div>
   );

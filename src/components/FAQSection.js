@@ -4,13 +4,13 @@ import { homepageFaqs } from "@/data/faqs";
 
 export default function FAQSection() {
   return (
-    <section id="faqs" className="relative w-full bg-[#0B1C2D] py-20">
+    <section id="faqs" className="relative w-full bg-surface py-20">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-10">
-          <p className="text-[#C9A14A] text-sm font-semibold uppercase tracking-wider mb-3">
+          <p className="text-gold text-sm font-semibold uppercase tracking-wider mb-3">
             Common questions
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#F5F7FA] mb-3">
+          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-3">
             Frequently asked questions
           </h2>
         </div>
@@ -22,7 +22,7 @@ export default function FAQSection() {
         <div className="text-center">
           <Link
             href="/faqs"
-            className="inline-flex items-center gap-2 text-[#C9A14A] font-semibold hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+            className="inline-flex items-center gap-2 text-gold font-semibold hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           >
             View all FAQs
             <span aria-hidden="true">→</span>

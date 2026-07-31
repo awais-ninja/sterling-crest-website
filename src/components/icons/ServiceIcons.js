@@ -50,14 +50,6 @@ export function VatIcon(props) {
   );
 }
 
-export function CisIcon(props) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-    </svg>
-  );
-}
-
 export function PropertyIcon(props) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
@@ -74,16 +66,43 @@ export function AdvisoryIcon(props) {
   );
 }
 
+export function FormationIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+    </svg>
+  );
+}
+
+export function ForecastIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+    </svg>
+  );
+}
+
 const iconMap = {
+  "annual-accounts": AccountsIcon,
   bookkeeping: BookkeepingIcon,
-  "company-accounts": AccountsIcon,
-  "corporation-tax": TaxIcon,
-  "self-assessment": SelfAssessmentIcon,
+  "management-accounts": AccountsIcon,
   payroll: PayrollIcon,
   "vat-returns": VatIcon,
-  "cis-returns": CisIcon,
-  "property-accounting": PropertyIcon,
-  "business-advisory": AdvisoryIcon,
+  "confirmation-statement": FormationIcon,
+  "self-assessment": SelfAssessmentIcon,
+  "corporation-tax": TaxIcon,
+  "capital-gains-tax": TaxIcon,
+  "tax-planning": TaxIcon,
+  "non-resident-landlord-tax": PropertyIcon,
+  "startup-support": AdvisoryIcon,
+  "company-formation": FormationIcon,
+  "cashflow-forecasting": ForecastIcon,
+  "cfo-advisory": AdvisoryIcon,
+  "business-growth-planning": AdvisoryIcon,
+  "landlord-accounting": PropertyIcon,
+  "spv-accounting": FormationIcon,
+  "property-tax-returns": PropertyIcon,
+  "hmo-holiday-let-accounting": PropertyIcon,
 };
 
 export function ServiceIcon({ slug, className = "w-8 h-8" }) {

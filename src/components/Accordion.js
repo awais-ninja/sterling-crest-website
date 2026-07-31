@@ -17,7 +17,7 @@ export default function Accordion({ items = [], headingLevel = "h3" }) {
         return (
           <div
             key={buttonId}
-            className="bg-gradient-to-br from-[#081524] to-[#0B1C2D] rounded-lg border border-[#C9A14A]/20 overflow-hidden"
+            className="bg-gradient-to-br from-surface-elevated to-surface rounded-lg border border-gold/20 overflow-hidden"
           >
             <HeadingTag className="text-base font-semibold m-0">
               <button
@@ -26,11 +26,11 @@ export default function Accordion({ items = [], headingLevel = "h3" }) {
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpenIndex(isOpen ? null : index)}
-                className="w-full px-6 py-4 flex items-center justify-between text-left text-[#F5F7FA] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+                className="w-full px-6 py-4 flex items-center justify-between text-left text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
               >
                 <span className="pr-4">{item.question}</span>
                 <svg
-                  className={`w-5 h-5 text-[#C9A14A] flex-shrink-0 transition-transform duration-300 ${
+                  className={`w-5 h-5 text-gold flex-shrink-0 transition-transform duration-300 ${
                     isOpen ? "rotate-180" : ""
                   }`}
                   fill="none"
@@ -55,7 +55,7 @@ export default function Accordion({ items = [], headingLevel = "h3" }) {
               className={isOpen ? "px-6 pb-4" : undefined}
             >
               {isOpen && (
-                <p className="text-sm text-[#AAB2BD] leading-relaxed">
+                <p className="text-sm text-ink-muted leading-relaxed">
                   {item.answer}
                 </p>
               )}

@@ -85,7 +85,7 @@ export default function MobileContactBar() {
   return (
     <div className="fixed bottom-0 inset-x-0 z-40 md:hidden pointer-events-none">
       <div
-        className="pointer-events-auto border-t border-[#C9A14A]/30 bg-[#081524]/95 backdrop-blur-sm px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
+        className="pointer-events-auto border-t border-gold/30 bg-surface-elevated/95 backdrop-blur-sm px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
         role="navigation"
         aria-label="Mobile contact actions"
       >
@@ -100,7 +100,7 @@ export default function MobileContactBar() {
         }`}>
           {actions.map((action) => {
             const className =
-              "flex flex-col items-center justify-center gap-1 min-h-12 rounded-md bg-[#0B1C2D] border border-[#C9A14A]/25 text-[#F5F7FA] text-xs font-medium hover:border-[#C9A14A] hover:text-[#C9A14A] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]";
+              "flex flex-col items-center justify-center gap-1 min-h-12 rounded-md bg-surface border border-gold/25 text-ink text-xs font-medium hover:border-gold hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold";
 
             if (action.external) {
               return (

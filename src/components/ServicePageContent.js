@@ -28,16 +28,16 @@ export default function ServicePageContent({ service }) {
   return (
     <PageShell>
       <JsonLd data={jsonLd} />
-      <section className="relative w-full bg-gradient-to-br from-[#0B1C2D] via-[#081524] to-[#050E18] py-16 md:py-24 pt-24 md:pt-32">
+      <section className="relative w-full bg-gradient-to-br from-surface via-surface-elevated to-surface-deep py-16 md:py-24 pt-24 md:pt-32">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
             <Breadcrumbs
               items={breadcrumbs.map(({ name, href }) => ({ name, href }))}
             />
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#F5F7FA] mb-5 break-words">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink mb-5 break-words">
               {service.h1}
             </h1>
-            <p className="text-lg text-[#AAB2BD] leading-relaxed mb-8">
+            <p className="text-lg text-ink-muted leading-relaxed mb-8">
               {service.intro}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -67,8 +67,8 @@ export default function ServicePageContent({ service }) {
       <Section title="How the process works" dark>
         <ol className="space-y-4">
           {service.process.map((step, index) => (
-            <li key={step} className="flex gap-4 text-[#AAB2BD]">
-              <span className="text-[#C9A14A] font-semibold shrink-0">
+            <li key={step} className="flex gap-4 text-ink-muted">
+              <span className="text-gold font-semibold shrink-0">
                 {index + 1}.
               </span>
               <span>{step}</span>
@@ -82,14 +82,14 @@ export default function ServicePageContent({ service }) {
       </Section>
 
       <Section title="Key deadlines" dark>
-        <p className="text-[#AAB2BD] leading-relaxed">{service.deadlines}</p>
-        <p className="text-[#AAB2BD] leading-relaxed mt-4 text-sm">
+        <p className="text-ink-muted leading-relaxed">{service.deadlines}</p>
+        <p className="text-ink-muted leading-relaxed mt-4 text-sm">
           For official dates, check{" "}
           <a
             href="https://www.gov.uk"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#C9A14A] underline"
+            className="text-gold underline"
           >
             GOV.UK
           </a>
@@ -108,10 +108,10 @@ export default function ServicePageContent({ service }) {
               <li key={item.slug}>
                 <Link
                   href={`/services/${item.slug}`}
-                  className="block h-full p-5 rounded-xl border border-[#C9A14A]/20 hover:border-[#C9A14A]/50 text-[#F5F7FA] hover:text-[#C9A14A] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+                  className="block h-full p-5 rounded-xl border border-gold/20 hover:border-gold/50 text-ink hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                 >
                   <span className="font-semibold">{item.title}</span>
-                  <span className="block text-sm text-[#AAB2BD] mt-2">
+                  <span className="block text-sm text-ink-muted mt-2">
                     {item.summary}
                   </span>
                 </Link>
@@ -127,12 +127,12 @@ export default function ServicePageContent({ service }) {
         </Section>
       )}
 
-      <section className="py-16 md:py-20 bg-gradient-to-b from-[#081524] to-[#050E18]">
+      <section className="py-16 md:py-20 bg-gradient-to-b from-surface-elevated to-surface-deep">
         <div className="container mx-auto px-4 sm:px-6 text-center max-w-3xl">
-          <h2 className="text-3xl font-bold text-[#F5F7FA] mb-4">
+          <h2 className="text-3xl font-bold text-ink mb-4">
             Discuss {service.shortTitle.toLowerCase()} with our team
           </h2>
-          <p className="text-[#AAB2BD] mb-8">
+          <p className="text-ink-muted mb-8">
             Request a tailored quotation. We will confirm scope and fees before
             any engagement begins.
           </p>
@@ -146,11 +146,11 @@ export default function ServicePageContent({ service }) {
 function Section({ title, children, dark = false }) {
   return (
     <section
-      className={`py-14 md:py-16 ${dark ? "bg-[#081524]" : "bg-[#0B1C2D]"}`}
+      className={`py-14 md:py-16 ${dark ? "bg-surface-elevated" : "bg-surface"}`}
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#F5F7FA] mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-ink mb-6">
             {title}
           </h2>
           {children}
@@ -164,8 +164,8 @@ function BulletList({ items }) {
   return (
     <ul className="space-y-3">
       {items.map((item) => (
-        <li key={item} className="flex gap-3 text-[#AAB2BD] leading-relaxed">
-          <span className="text-[#C9A14A] mt-1" aria-hidden="true">
+        <li key={item} className="flex gap-3 text-ink-muted leading-relaxed">
+          <span className="text-gold mt-1" aria-hidden="true">
             •
           </span>
           <span>{item}</span>

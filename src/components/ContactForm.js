@@ -113,7 +113,7 @@ export default function ContactForm({ defaultService = "" }) {
       id="enquiry-form"
       noValidate
       onSubmit={handleSubmit}
-      className="relative bg-gradient-to-br from-[#081524] to-[#0B1C2D] p-6 md:p-8 rounded-xl border border-[#C9A14A]/20 space-y-5"
+      className="relative bg-gradient-to-br from-surface-elevated to-surface p-6 md:p-8 rounded-xl border border-gold/20 space-y-5"
       aria-describedby={`${formId}-status`}
     >
       <div
@@ -132,16 +132,16 @@ export default function ContactForm({ defaultService = "" }) {
           role="alert"
           className="rounded-lg border border-red-400/40 bg-red-950/30 p-4"
         >
-          <p className="font-semibold text-[#F5F7FA] mb-2">
+          <p className="font-semibold text-ink mb-2">
             There {errorEntries.length === 1 ? "is" : "are"}{" "}
             {errorEntries.length}{" "}
             {errorEntries.length === 1 ? "problem" : "problems"} with your
             submission:
           </p>
-          <ul className="list-disc pl-5 space-y-1 text-sm text-[#AAB2BD]">
+          <ul className="list-disc pl-5 space-y-1 text-sm text-ink-muted">
             {errorEntries.map(([key, message]) => (
               <li key={key}>
-                <a href={`#${formId}-${key}`} className="text-[#C9A14A] underline">
+                <a href={`#${formId}-${key}`} className="text-gold underline">
                   {message}
                 </a>
               </li>
@@ -319,7 +319,7 @@ export default function ContactForm({ defaultService = "" }) {
       </Field>
 
       <div>
-        <label className="flex items-start gap-3 text-sm text-[#AAB2BD]">
+        <label className="flex items-start gap-3 text-sm text-ink-muted">
           <input
             id={`${formId}-privacyAccepted`}
             name="privacyAccepted"
@@ -333,7 +333,7 @@ export default function ContactForm({ defaultService = "" }) {
             I have read and understand the{" "}
             <Link
               href="/privacy"
-              className="text-[#C9A14A] underline underline-offset-2"
+              className="text-gold underline underline-offset-2"
             >
               Privacy Policy
             </Link>{" "}
@@ -351,7 +351,7 @@ export default function ContactForm({ defaultService = "" }) {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full min-h-12 rounded-lg bg-[#C9A14A] text-[#0B1C2D] font-semibold hover:bg-[#B08B3E] disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A]"
+        className="w-full min-h-12 rounded-lg bg-gold text-on-gold font-semibold hover:bg-gold-dark disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
       >
         {submitting ? "Submitting…" : "Send enquiry"}
       </button>
@@ -368,11 +368,11 @@ export default function ContactForm({ defaultService = "" }) {
 function Field({ id, label, error, required, hint, children }) {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium text-[#F5F7FA] mb-2">
+      <label htmlFor={id} className="block text-sm font-medium text-ink mb-2">
         {label}
-        {required ? <span className="text-[#C9A14A]"> *</span> : null}
+        {required ? <span className="text-gold"> *</span> : null}
       </label>
-      {hint ? <p className="text-xs text-[#AAB2BD] mb-2">{hint}</p> : null}
+      {hint ? <p className="text-xs text-ink-muted mb-2">{hint}</p> : null}
       {children}
       {error ? (
         <p id={`${id}-error`} className="mt-2 text-sm text-red-300">
@@ -384,7 +384,7 @@ function Field({ id, label, error, required, hint, children }) {
 }
 
 function inputClass(hasError) {
-  return `w-full min-h-11 rounded-md border bg-[#0B1C2D] px-3 py-2 text-[#F5F7FA] placeholder:text-[#AAB2BD]/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A14A] ${
-    hasError ? "border-red-400" : "border-[#C9A14A]/30"
+  return `w-full min-h-11 rounded-md border bg-surface px-3 py-2 text-ink placeholder:text-ink-muted/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold ${
+    hasError ? "border-red-400" : "border-gold/30"
   }`;
 }
