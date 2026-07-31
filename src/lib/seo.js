@@ -35,8 +35,8 @@ export function createPageMetadata({
       images: [
         {
           url: absoluteImage,
-          width: 1200,
-          height: 630,
+          width: 1731,
+          height: 909,
           alt: siteConfig.name,
         },
       ],

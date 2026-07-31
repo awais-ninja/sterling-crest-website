@@ -509,7 +509,7 @@ function MegaMenu({
           <div className="border-t border-gold/20 px-5 sm:px-6 lg:px-7 py-3.5 bg-surface/70">
             <Link
               href={href}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:text-gold-dark transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold link-gold"
               onClick={() => setOpenMenu(null)}
             >
               {viewAllLabel}
@@ -596,7 +596,7 @@ function MobileAccordion({
           ))}
           <Link
             href={href}
-            className="block text-gold font-semibold py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className="block link-gold font-semibold py-2 text-sm"
             onClick={onNavigate}
           >
             {viewAllLabel}

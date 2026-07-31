@@ -22,7 +22,7 @@ export default function FAQSection() {
         <div className="text-center">
           <Link
             href="/faqs"
-            className="inline-flex items-center gap-2 text-gold font-semibold hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className="inline-flex items-center gap-2 link-gold font-semibold"
           >
             View all FAQs
             <span aria-hidden="true">→</span>

@@ -36,8 +36,8 @@ html[data-theme="light"] {
   --surface-deep: 238 241 245;
   --ink: 0 0 0;
   --ink-muted: 0 0 0;
-  --gold: 188 117 31;
-  --gold-dark: 164 98 24;
+  --gold: 138 84 16;
+  --gold-dark: 112 66 12;
   --on-gold: 255 255 255;
   color-scheme: light;
 }
@@ -107,6 +107,17 @@ img {
   overflow: visible;
   clip: auto;
   white-space: normal;
+}
+
+/* Always-visible underlines on text links so colour is not the only cue. */
+@layer components {
+  .link-gold {
+    @apply text-gold underline underline-offset-2 hover:text-gold-dark transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
+  }
+
+  .link-muted {
+    @apply text-ink-muted underline underline-offset-2 hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
+  }
 }
 
 /* Logo includes white type — navy plate in light mode only. */

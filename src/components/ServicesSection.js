@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getFeaturedServices } from "@/data/services";
 import { ServiceIcon } from "@/components/icons/ServiceIcons";
+import DesktopOnly from "@/components/DesktopOnlyImage";
 
 export default function ServicesSection() {
   const featured = getFeaturedServices(6);
@@ -10,7 +11,10 @@ export default function ServicesSection() {
     <section
       id="services"
       className="relative w-full py-20 md:py-24"
-      style={{ background: "linear-gradient(to bottom, rgb(var(--surface)), rgb(var(--surface-elevated)))" }}
+      style={{
+        background:
+          "linear-gradient(to bottom, rgb(var(--surface)), rgb(var(--surface-elevated)))",
+      }}
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12 md:mb-16">
@@ -26,26 +30,33 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start max-w-7xl mx-auto mb-12">
-          <div className="hidden lg:block relative w-full h-[520px] rounded-2xl overflow-hidden shadow-2xl">
-            <Image
-              src="/homepage/home-page-section-3.webp"
-              alt="Organised financial documents and reporting materials"
-              fill
-              sizes="(max-width: 1024px) 0px, 520px"
-              className="object-cover"
-            />
-          </div>
+        <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-8 lg:gap-10 items-stretch max-w-7xl mx-auto mb-12">
+          <DesktopOnly>
+            <figure className="relative h-full min-h-[32rem] overflow-hidden border border-gold/25 shadow-[0_24px_60px_-36px_rgba(0,0,0,0.7)]">
+              <Image
+                src="/homepage/home-page-services.webp"
+                alt="Sterling Crest accounting workspace with reports, laptop and branded materials"
+                fill
+                sizes="45vw"
+                className="object-cover object-[center_20%]"
+                quality={80}
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-surface/50 via-transparent to-transparent pointer-events-none"
+                aria-hidden="true"
+              />
+            </figure>
+          </DesktopOnly>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {featured.map((service) => (
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group flex items-start gap-4 bg-gradient-to-br from-surface-elevated to-surface p-5 rounded-xl border border-gold/20 hover:border-gold/50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                className="group flex items-start gap-4 p-4 md:p-5 border border-gold/20 hover:border-gold/50 hover:bg-surface/40 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
               >
-                <div className="w-12 h-12 rounded-lg bg-gold/10 text-gold flex items-center justify-center shrink-0">
-                  <ServiceIcon slug={service.slug} className="w-6 h-6" />
+                <div className="w-11 h-11 border border-gold/40 text-gold flex items-center justify-center shrink-0 group-hover:border-gold transition-colors">
+                  <ServiceIcon slug={service.slug} className="w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-ink group-hover:text-gold transition-colors mb-1">
@@ -63,7 +74,7 @@ export default function ServicesSection() {
         <div className="text-center">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 text-gold font-semibold text-lg hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className="inline-flex items-center gap-2 link-gold font-semibold text-lg"
           >
             View all services
             <span aria-hidden="true">→</span>

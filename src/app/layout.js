@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import { businessDetails } from "@/config/business";
 import { getSiteUrl, siteConfig } from "@/config/site";
@@ -8,12 +8,6 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -35,8 +29,19 @@ export const metadata = {
     telephone: false,
   },
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/apple-touch-icon.svg" }],
+    icon: [{ url: "/fav.ico", sizes: "any" }],
+    apple: [
+      {
+        url: "/apple-touch-icon-iphone-retina-120x120.png",
+        sizes: "120x120",
+        type: "image/png",
+      },
+      {
+        url: "/apple-touch-icon-ipad-retina-152x152.png",
+        sizes: "152x152",
+        type: "image/png",
+      },
+    ],
   },
   manifest: "/site.webmanifest",
   openGraph: {
@@ -49,8 +54,8 @@ export const metadata = {
     images: [
       {
         url: siteConfig.defaultOgImage,
-        width: 1200,
-        height: 630,
+        width: 1731,
+        height: 909,
         alt: businessDetails.tradingName,
       },
     ],
@@ -67,6 +72,15 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0B1C2D" },
+  ],
+};
+
 function resolveTheme(value) {
   return value === "light" || value === "dark" ? value : "dark";
 }
@@ -77,8 +91,26 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en-GB" data-theme={theme} suppressHydrationWarning>
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/homepage/home-page-hero-mobile.webp"
+          type="image/webp"
+          media="(max-width: 1023px)"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/homepage/home-page-hero.webp"
+          type="image/webp"
+          media="(min-width: 1024px)"
+          fetchPriority="high"
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-surface text-ink`}
+        className={`${geistSans.variable} antialiased bg-surface text-ink`}
         style={{ colorScheme: theme }}
         suppressHydrationWarning
       >

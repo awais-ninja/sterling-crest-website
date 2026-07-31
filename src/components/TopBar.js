@@ -37,16 +37,16 @@ export default function TopBar() {
   if (!hasLeft && !hasRight) return null;
 
   return (
-    <div className="bg-surface-elevated border-b border-gold/25 text-[0.75rem] sm:text-[0.8125rem] text-ink-muted">
+    <div className="bg-surface-elevated border-b border-gold/25 text-sm text-ink-muted">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="flex flex-col md:flex-row flex-wrap items-center justify-center md:justify-between gap-x-4 gap-y-1.5 py-2 min-h-9 text-center md:text-left">
+        <div className="flex flex-col md:flex-row flex-wrap items-center justify-center md:justify-between gap-x-4 gap-y-2 py-2.5 min-h-12 text-center md:text-left">
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-0 gap-y-1">
             {hasValue(businessDetails.email) && (
               <TopItem showDivider={false}>
                 <a
                   href={emailHref || `mailto:${businessDetails.email}`}
                   aria-label={`Email ${businessDetails.email}`}
-                  className="inline-flex items-center gap-1.5 text-gold hover:text-gold-dark transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                  className="inline-flex items-center gap-1.5 min-h-11 py-1 link-gold"
                   onClick={() =>
                     trackEvent(AnalyticsEvents.EMAIL_CLICK, {
                       location: "top_bar",
@@ -64,7 +64,7 @@ export default function TopBar() {
                 <a
                   href={phoneHref}
                   aria-label={`Call ${businessDetails.phone}`}
-                  className="inline-flex items-center gap-1.5 text-ink hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                  className="inline-flex items-center gap-1.5 min-h-11 py-1 link-muted"
                   onClick={() =>
                     trackEvent(AnalyticsEvents.PHONE_CLICK, {
                       location: "top_bar",
@@ -84,7 +84,7 @@ export default function TopBar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`WhatsApp ${businessDetails.whatsappNumber}`}
-                  className="inline-flex items-center gap-1.5 text-ink hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                  className="inline-flex items-center gap-1.5 min-h-11 py-1 link-muted"
                   onClick={() =>
                     trackEvent(AnalyticsEvents.WHATSAPP_CLICK, {
                       location: "top_bar",
@@ -131,7 +131,7 @@ export default function TopBar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${social.label} (opens in a new tab)`}
-                  className="text-ink hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                  className="link-muted min-h-11 py-1 inline-flex items-center"
                 >
                   {social.label}
                 </a>

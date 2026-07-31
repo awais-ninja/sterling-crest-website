@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import DesktopOnly from "@/components/DesktopOnlyImage";
 
 const clientTypes = [
   {
@@ -45,44 +46,49 @@ export default function ClientsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-10 items-stretch max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {clientTypes.map((client) => (
               <Link
                 key={client.title}
                 href={client.href}
-                className="bg-gradient-to-br from-surface-elevated to-surface p-6 rounded-xl border border-gold/20 hover:border-gold/50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                className="group p-5 md:p-6 border border-gold/20 hover:border-gold/50 hover:bg-surface-elevated/50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
               >
-                <h3 className="text-lg font-semibold text-ink mb-2 group-hover:text-gold">
+                <h3 className="text-lg font-semibold text-ink mb-2 group-hover:text-gold transition-colors">
                   {client.title}
                 </h3>
                 <p className="text-ink-muted leading-relaxed text-sm mb-3">
                   {client.description}
                 </p>
-                <span className="text-gold text-sm font-medium">
+                <span className="text-gold underline underline-offset-2 text-sm font-medium">
                   Learn more →
                 </span>
               </Link>
             ))}
           </div>
 
-          <div className="relative hidden lg:block">
-            <div className="relative w-full h-[480px] rounded-2xl overflow-hidden shadow-2xl">
+          <DesktopOnly>
+            <figure className="relative h-full min-h-[28rem] overflow-hidden border border-gold/25 shadow-[0_24px_60px_-36px_rgba(0,0,0,0.7)]">
               <Image
-                src="/homepage/home-page-section-4.webp"
-                alt="Business discussion representing client focused accountancy support"
+                src="/homepage/home-page-clients.webp"
+                alt="Client focused accountancy discussion and workspace"
                 fill
-                sizes="(max-width: 1024px) 0px, 520px"
-                className="object-cover"
+                sizes="45vw"
+                className="object-cover object-center"
+                quality={80}
               />
-            </div>
-          </div>
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-surface/50 via-transparent to-transparent pointer-events-none"
+                aria-hidden="true"
+              />
+            </figure>
+          </DesktopOnly>
         </div>
 
         <div className="text-center mt-10">
           <Link
             href="/who-we-serve"
-            className="inline-flex items-center gap-2 text-gold font-semibold text-lg hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className="inline-flex items-center gap-2 link-gold font-semibold text-lg"
           >
             View all audiences
             <span aria-hidden="true">→</span>

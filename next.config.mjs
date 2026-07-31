@@ -45,6 +45,7 @@ const securityHeaders = [
 const nextConfig = {
   images: {
     unoptimized: false,
+    qualities: [75, 80],
     remotePatterns: [],
   },
   reactStrictMode: true,

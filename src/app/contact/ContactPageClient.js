@@ -113,7 +113,7 @@ function ContactPageInner() {
                       <a
                         href={phoneHref}
                         aria-label={`Call ${businessDetails.phone}`}
-                        className="text-gold hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                        className="link-gold"
                         onClick={() =>
                           trackEvent(AnalyticsEvents.PHONE_CLICK, {
                             location: "contact_page",
@@ -130,7 +130,7 @@ function ContactPageInner() {
                       <a
                         href={emailHref || `mailto:${businessDetails.email}`}
                         aria-label={`Email ${businessDetails.email}`}
-                        className="text-gold break-all hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                        className="link-gold break-all"
                         onClick={() =>
                           trackEvent(AnalyticsEvents.EMAIL_CLICK, {
                             location: "contact_page",
@@ -148,7 +148,7 @@ function ContactPageInner() {
                         href={whatsappHref}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-gold hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                        className="link-gold"
                         onClick={() =>
                           trackEvent(AnalyticsEvents.WHATSAPP_CLICK, {
                             location: "contact_page",
@@ -203,7 +203,7 @@ function ContactPageInner() {
                     <li key={service.slug}>
                       <Link
                         href={`/services/${service.slug}`}
-                        className="text-gold hover:underline"
+                        className="link-gold"
                       >
                         {service.title}
                       </Link>

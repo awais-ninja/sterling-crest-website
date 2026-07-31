@@ -17,8 +17,7 @@ const footerServices = footerServiceSlugs
   .map((slug) => getServiceBySlug(slug))
   .filter(Boolean);
 
-const footerLinkClass =
-  "text-ink-muted hover:text-gold transition-colors text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold";
+const footerLinkClass = "link-muted text-sm";
 
 export default function Footer() {
   const emailHref = getEmailHref();
@@ -56,17 +55,14 @@ export default function Footer() {
                 <li key={service.slug}>
                   <Link
                     href={`/services/${service.slug}`}
-                    className="text-ink-muted hover:text-gold transition-colors text-sm leading-snug focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                    className="link-muted text-sm leading-snug"
                   >
                     {service.navLabel}
                   </Link>
                 </li>
               ))}
               <li className="pt-1">
-                <Link
-                  href="/services"
-                  className="text-gold hover:text-gold-dark transition-colors text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-                >
+                <Link href="/services" className="link-gold text-sm font-semibold">
                   View All Services
                 </Link>
               </li>
@@ -80,10 +76,7 @@ export default function Footer() {
             <ul className="space-y-2">
               {navigation.map((item) => (
                 <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-ink-muted hover:text-gold transition-colors text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-                  >
+                  <Link href={item.href} className="link-muted text-sm">
                     {item.label}
                   </Link>
                 </li>
@@ -104,7 +97,7 @@ export default function Footer() {
                   <a
                     href={phoneHref}
                     aria-label={`Call ${businessDetails.phone}`}
-                    className="text-gold hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                    className="link-gold"
                   >
                     {businessDetails.phone}
                   </a>
@@ -118,7 +111,7 @@ export default function Footer() {
                   <a
                     href={emailHref || `mailto:${businessDetails.email}`}
                     aria-label={`Email ${businessDetails.email}`}
-                    className="text-gold hover:underline break-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                    className="link-gold break-all"
                   >
                     {businessDetails.email}
                   </a>
@@ -196,7 +189,7 @@ export default function Footer() {
                   href={businessDetails.creditUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gold hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                  className="link-gold"
                 >
                   {businessDetails.creditName}
                 </a>

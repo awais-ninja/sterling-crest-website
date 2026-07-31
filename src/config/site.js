@@ -24,7 +24,7 @@ export const siteConfig = {
   name: businessDetails.tradingName,
   legalName: businessDetails.legalName,
   description: businessDetails.brandDescription,
-  defaultOgImage: "/homepage/home-page-hero-section.webp",
+  defaultOgImage: "/og-image.webp",
   locale: "en_GB",
   twitterHandle: "",
 };
