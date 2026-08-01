@@ -4,8 +4,12 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import { businessDetails } from "@/config/business";
 import { getSiteUrl, siteConfig } from "@/config/site";
-import AnalyticsLoader from "@/components/AnalyticsLoader";
+import AnalyticsConsentSync from "@/components/AnalyticsConsentSync";
 import AnalyticsPageView from "@/components/AnalyticsPageView";
+import {
+  GoogleTagHeadScripts,
+  GoogleTagManagerNoscript,
+} from "@/components/GoogleTags";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 const geistSans = Geist({
@@ -94,6 +98,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en-GB" data-theme={theme} suppressHydrationWarning>
       <head>
+        <GoogleTagHeadScripts />
         <link
           rel="preload"
           as="image"
@@ -116,9 +121,10 @@ export default async function RootLayout({ children }) {
         style={{ colorScheme: theme }}
         suppressHydrationWarning
       >
+        <GoogleTagManagerNoscript />
         <ThemeProvider defaultTheme={theme}>
           {children}
-          <AnalyticsLoader />
+          <AnalyticsConsentSync />
           <Suspense fallback={null}>
             <AnalyticsPageView />
           </Suspense>

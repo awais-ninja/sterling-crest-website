@@ -1,10 +1,15 @@
 /**
  * Lightweight analytics helper.
- * Disabled until GA and/or GTM IDs are set and consent is granted.
+ * GA4 / GTM load with Consent Mode (denied by default) so Google can detect the tag.
+ * Measurement only activates after the visitor grants analytics consent.
  */
 
 const CONSENT_KEY = "sc_cookie_consent";
 export const OPEN_COOKIE_SETTINGS_EVENT = "sc-open-cookie-settings";
+
+/** Public client IDs — safe to ship; override via env when needed. */
+const DEFAULT_GA_MEASUREMENT_ID = "G-ZPV6WDL4E5";
+const DEFAULT_GTM_ID = "GTM-TL93BP5Z";
 
 export function getStoredConsent() {
   if (typeof window === "undefined") return null;
@@ -16,6 +21,18 @@ export function getStoredConsent() {
   }
 }
 
+export function applyGtagConsent(analyticsGranted) {
+  if (typeof window === "undefined") return;
+  if (typeof window.gtag !== "function") return;
+
+  window.gtag("consent", "update", {
+    analytics_storage: analyticsGranted ? "granted" : "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+}
+
 export function storeConsent(consent) {
   if (typeof window === "undefined") return;
   window.localStorage.setItem(
@@ -25,6 +42,7 @@ export function storeConsent(consent) {
       updatedAt: new Date().toISOString(),
     })
   );
+  applyGtagConsent(Boolean(consent?.analytics));
   window.dispatchEvent(new Event("sc-consent-updated"));
 }
 
@@ -39,11 +57,15 @@ export function hasAnalyticsConsent() {
 }
 
 export function getGaMeasurementId() {
-  return process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() || "";
+  const fromEnv = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  if (typeof fromEnv === "string" && fromEnv.trim()) return fromEnv.trim();
+  return DEFAULT_GA_MEASUREMENT_ID;
 }
 
 export function getGtmId() {
-  return process.env.NEXT_PUBLIC_GTM_ID?.trim() || "";
+  const fromEnv = process.env.NEXT_PUBLIC_GTM_ID;
+  if (typeof fromEnv === "string" && fromEnv.trim()) return fromEnv.trim();
+  return DEFAULT_GTM_ID;
 }
 
 export function isAnalyticsConfigured() {
@@ -51,7 +73,7 @@ export function isAnalyticsConfigured() {
 }
 
 /**
- * Push a non sensitive analytics event when consent and analytics are present.
+ * Push a non sensitive analytics event when consent is granted.
  * Never send names, emails, phone numbers or message content.
  */
 export function trackEvent(eventName, params = {}) {

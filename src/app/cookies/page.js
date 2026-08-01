@@ -53,8 +53,8 @@ export default function CookiesPage() {
               <p>
                 Analytics cookies help us understand how visitors use the site,
                 such as which pages are viewed. Google Analytics and Google Tag
-                Manager are only loaded if configured and you have given consent.
-                They remain disabled by default.
+                Manager scripts may load with Consent Mode set to denied by
+                default; analytics storage is only granted if you give consent.
               </p>
             </Card>
 
