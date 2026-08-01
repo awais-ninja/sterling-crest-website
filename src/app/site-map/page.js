@@ -42,7 +42,6 @@ export default function HtmlSitemapPage() {
             ))}
             <SitemapLink href="/site-map" label="Sitemap" />
             <SitemapLink href="/faqs" label="FAQs" />
-            <SitemapLink href="/thank-you" label="Thank you" />
           </SitemapGroup>
 
           {serviceCategories.map((category) => (

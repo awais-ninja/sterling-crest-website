@@ -17,10 +17,16 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
+  const [menuPathname, setMenuPathname] = useState(pathname);
   const [mobileExpanded, setMobileExpanded] = useState(null);
   const phoneHref = getPhoneHref();
   const serviceCategories = getServiceCategoriesWithServices();
   const audienceCategories = getAudienceCategoriesWithAudiences();
+
+  if (pathname !== menuPathname) {
+    setMenuPathname(pathname);
+    setOpenMenu(null);
+  }
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -39,10 +45,6 @@ export default function Navbar() {
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, []);
-
-  useEffect(() => {
-    setOpenMenu(null);
-  }, [pathname]);
 
   useEffect(() => {
     if (!isOpen) return undefined;

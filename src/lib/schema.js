@@ -2,9 +2,9 @@ import {
   businessDetails,
   getSocialProfiles,
   hasValue,
+  napDetails,
 } from "@/config/business";
 import { getSiteUrl } from "@/config/site";
-import { services } from "@/data/services";
 
 function omitEmpty(obj) {
   return Object.fromEntries(
@@ -16,9 +16,23 @@ function omitEmpty(obj) {
   );
 }
 
+const FEATURED_SCHEMA_SERVICES = [
+  "Bookkeeping",
+  "Company Accounts",
+  "Corporation Tax",
+  "Self-Assessment",
+  "Payroll and PAYE",
+  "VAT Returns",
+  "CIS Returns",
+  "Property and Landlord Accounting",
+  "Business Advisory",
+  "Company Formation",
+];
+
 export function getOrganizationSchema() {
   const siteUrl = getSiteUrl();
   const sameAs = getSocialProfiles();
+  const lines = businessDetails.registeredOfficeLines || [];
 
   return omitEmpty({
     "@context": "https://schema.org",
@@ -27,22 +41,28 @@ export function getOrganizationSchema() {
     legalName: businessDetails.legalName,
     url: siteUrl,
     logo: `${siteUrl}/logo.svg`,
+    description: businessDetails.brandDescription,
     email: hasValue(businessDetails.email) ? businessDetails.email : undefined,
     telephone: hasValue(businessDetails.phoneTel)
       ? businessDetails.phoneTel
-      : hasValue(businessDetails.phone)
-        ? businessDetails.phone
+      : hasValue(napDetails.phone)
+        ? napDetails.phone
         : undefined,
     identifier: businessDetails.companyNumber,
-    areaServed: "GB",
+    areaServed: {
+      "@type": "Country",
+      name: "United Kingdom",
+    },
     sameAs: sameAs.length ? sameAs : undefined,
-    address: hasValue(businessDetails.registeredOffice)
+    address: hasValue(napDetails.address)
       ? omitEmpty({
           "@type": "PostalAddress",
-          streetAddress: "530 Manor Mills, Ingram Street",
-          addressLocality: "Leeds",
-          addressRegion: "England",
-          postalCode: "LS11 9BR",
+          streetAddress:
+            [lines[0], lines[1]].filter(Boolean).join(", ") ||
+            "530 Manor Mills, Ingram Street",
+          addressLocality: lines[2] || "Leeds",
+          addressRegion: "West Yorkshire",
+          postalCode: lines[4] || "LS11 9BR",
           addressCountry: "GB",
         })
       : undefined,
@@ -67,22 +87,26 @@ export function getOrganizationSchema() {
           email: businessDetails.email,
           telephone: hasValue(businessDetails.phoneTel)
             ? businessDetails.phoneTel
-            : hasValue(businessDetails.phone)
-              ? businessDetails.phone
+            : hasValue(napDetails.phone)
+              ? napDetails.phone
               : undefined,
+          areaServed: "GB",
           availableLanguage: "English",
         })
       : undefined,
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Accountancy services",
-      itemListElement: services.map((service) => ({
+      name: "Accountancy and tax services",
+      itemListElement: FEATURED_SCHEMA_SERVICES.map((name) => ({
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: service.title,
-          url: `${siteUrl}/services/${service.slug}`,
-          description: service.summary,
+          name,
+          provider: {
+            "@type": "Organization",
+            name: businessDetails.tradingName,
+          },
+          areaServed: "GB",
         },
       })),
     },
@@ -96,6 +120,11 @@ export function getWebsiteSchema() {
     "@type": "WebSite",
     name: businessDetails.tradingName,
     url: siteUrl,
+    publisher: {
+      "@type": "Organization",
+      name: businessDetails.tradingName,
+      url: siteUrl,
+    },
   };
 }
 
@@ -143,7 +172,49 @@ export function getServiceSchema(service) {
       "@type": "Organization",
       name: businessDetails.tradingName,
       url: siteUrl,
+      telephone: hasValue(businessDetails.phoneTel)
+        ? businessDetails.phoneTel
+        : undefined,
     },
-    areaServed: "GB",
+    areaServed: {
+      "@type": "Country",
+      name: "United Kingdom",
+    },
   });
+}
+
+/** Review schema only when genuine reviews are configured. */
+export function getReviewsSchema() {
+  const reviews = Array.isArray(businessDetails.reviews)
+    ? businessDetails.reviews.filter(
+        (review) =>
+          hasValue(review?.text) &&
+          hasValue(review?.name) &&
+          typeof review?.rating === "number"
+      )
+    : [];
+
+  if (!reviews.length) return null;
+
+  return reviews.map((review) =>
+    omitEmpty({
+      "@context": "https://schema.org",
+      "@type": "Review",
+      reviewBody: review.text,
+      datePublished: review.date || undefined,
+      author: {
+        "@type": "Person",
+        name: review.name,
+      },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: review.rating,
+        bestRating: 5,
+      },
+      itemReviewed: {
+        "@type": "Organization",
+        name: businessDetails.tradingName,
+      },
+    })
+  );
 }

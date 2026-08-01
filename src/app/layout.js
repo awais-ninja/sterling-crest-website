@@ -1,9 +1,11 @@
+import { Suspense } from "react";
 import { cookies } from "next/headers";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import { businessDetails } from "@/config/business";
 import { getSiteUrl, siteConfig } from "@/config/site";
 import AnalyticsLoader from "@/components/AnalyticsLoader";
+import AnalyticsPageView from "@/components/AnalyticsPageView";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 const geistSans = Geist({
@@ -54,9 +56,9 @@ export const metadata = {
     images: [
       {
         url: siteConfig.defaultOgImage,
-        width: 1731,
-        height: 909,
-        alt: businessDetails.tradingName,
+        width: 1200,
+        height: 630,
+        alt: "Sterling Crest Accountants – accounting and tax services",
       },
     ],
   },
@@ -117,6 +119,9 @@ export default async function RootLayout({ children }) {
         <ThemeProvider defaultTheme={theme}>
           {children}
           <AnalyticsLoader />
+          <Suspense fallback={null}>
+            <AnalyticsPageView />
+          </Suspense>
         </ThemeProvider>
       </body>
     </html>

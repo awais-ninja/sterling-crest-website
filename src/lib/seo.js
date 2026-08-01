@@ -35,9 +35,9 @@ export function createPageMetadata({
       images: [
         {
           url: absoluteImage,
-          width: 1731,
-          height: 909,
-          alt: siteConfig.name,
+          width: 1200,
+          height: 630,
+          alt: "Sterling Crest Accountants – accounting and tax services",
         },
       ],
     },

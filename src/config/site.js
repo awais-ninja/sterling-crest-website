@@ -1,6 +1,6 @@
 import { businessDetails } from "./business";
 
-const DEFAULT_SITE_URL = "https://sterlingcrest.co.uk";
+const DEFAULT_SITE_URL = "https://www.sterlingcrest.co.uk";
 
 /**
  * Production site URL. Preview deployments should never become canonical.
@@ -24,7 +24,7 @@ export const siteConfig = {
   name: businessDetails.tradingName,
   legalName: businessDetails.legalName,
   description: businessDetails.brandDescription,
-  defaultOgImage: "/og-image.webp",
+  defaultOgImage: "/og-image.png",
   locale: "en_GB",
   twitterHandle: "",
 };

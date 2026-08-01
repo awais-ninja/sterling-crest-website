@@ -1,6 +1,6 @@
 /**
  * Lightweight analytics helper.
- * Disabled until NEXT_PUBLIC_GA_MEASUREMENT_ID is set and consent is granted.
+ * Disabled until GA and/or GTM IDs are set and consent is granted.
  */
 
 const CONSENT_KEY = "sc_cookie_consent";
@@ -42,12 +42,16 @@ export function getGaMeasurementId() {
   return process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() || "";
 }
 
+export function getGtmId() {
+  return process.env.NEXT_PUBLIC_GTM_ID?.trim() || "";
+}
+
 export function isAnalyticsConfigured() {
-  return Boolean(getGaMeasurementId());
+  return Boolean(getGaMeasurementId() || getGtmId());
 }
 
 /**
- * Push a non sensitive analytics event when consent and GA ID are present.
+ * Push a non sensitive analytics event when consent and analytics are present.
  * Never send names, emails, phone numbers or message content.
  */
 export function trackEvent(eventName, params = {}) {
@@ -79,5 +83,6 @@ export const AnalyticsEvents = {
   EMAIL_CLICK: "email_click",
   WHATSAPP_CLICK: "whatsapp_click",
   CONSULTATION_CLICK: "consultation_click",
+  PICKTIME_CLICK: "picktime_click",
   SERVICE_ENQUIRY_CLICK: "service_enquiry_click",
 };

@@ -50,7 +50,9 @@ function ContactPageInner() {
             </h1>
             <p className="text-lg text-ink-muted leading-relaxed mb-8">
               Send an enquiry or book a free 30 minute consultation.{" "}
-              {businessDetails.responseTime}
+              {businessDetails.responseTime} Sterling Crest Accountants is
+              registered in Leeds and provides remote accounting and tax support
+              across the UK.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <ConsultationCta location="contact_hero">

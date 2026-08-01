@@ -7,8 +7,11 @@ import {
   footerServiceSlugs,
   getCompanyDisclosure,
   getEmailHref,
+  getGoogleBusinessProfileUrl,
   getPhoneHref,
+  getPublicSocialLinks,
   hasValue,
+  napDetails,
 } from "@/config/business";
 import { footerLegalLinks, navigation } from "@/config/site";
 import { getServiceBySlug } from "@/data/services";
@@ -23,6 +26,8 @@ export default function Footer() {
   const emailHref = getEmailHref();
   const phoneHref = getPhoneHref();
   const creditIsLink = hasValue(businessDetails.creditUrl);
+  const socialLinks = getPublicSocialLinks();
+  const gbpUrl = getGoogleBusinessProfileUrl();
 
   return (
     <footer className="relative w-full bg-surface border-t border-gold/40">
@@ -117,6 +122,14 @@ export default function Footer() {
                   </a>
                 </p>
               )}
+              {hasValue(napDetails.address) && (
+                <p>
+                  <span className="block text-ink text-xs uppercase tracking-wider mb-1">
+                    Registered office
+                  </span>
+                  <span className="text-ink-muted">{napDetails.address}</span>
+                </p>
+              )}
               <p>
                 <span className="block text-ink text-xs uppercase tracking-wider mb-1">
                   Opening hours
@@ -135,6 +148,32 @@ export default function Footer() {
                   Appointments only
                 </p>
               )}
+              {(socialLinks.length > 0 || hasValue(gbpUrl)) && (
+                <div className="pt-2 space-y-2">
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.href}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.ariaLabel}
+                      className="block link-gold text-sm"
+                    >
+                      {social.label}
+                    </a>
+                  ))}
+                  {hasValue(gbpUrl) && (
+                    <a
+                      href={gbpUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block link-gold text-sm"
+                    >
+                      View our Google Business Profile
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -143,9 +182,9 @@ export default function Footer() {
           <p className="text-ink-muted text-sm leading-relaxed">
             {getCompanyDisclosure()}
           </p>
-          {hasValue(businessDetails.registeredOffice) && (
+          {hasValue(napDetails.address) && (
             <p className="text-ink-muted text-sm leading-relaxed">
-              Address: {businessDetails.registeredOffice}.
+              Address: {napDetails.address}.
             </p>
           )}
         </div>

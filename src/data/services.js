@@ -614,7 +614,7 @@ export const services = [
       "Organised workings for future years",
       "Practical discussion of legitimate planning points where appropriate",
     ],
-    related: ["annual-accounts", "tax-planning", "payroll"],
+    related: ["annual-accounts", "bookkeeping", "business-growth-planning"],
     faqs: [
       {
         question: "Do you offer corporation tax planning?",
@@ -1199,7 +1199,7 @@ export const services = [
       "Smoother self assessment preparation",
       "Practical support for multi property portfolios",
     ],
-    related: ["self-assessment", "property-tax-returns", "hmo-holiday-let-accounting"],
+    related: ["self-assessment", "bookkeeping", "business-growth-planning"],
     faqs: [
       {
         question: "Do you handle both furnished and unfurnished lets?",

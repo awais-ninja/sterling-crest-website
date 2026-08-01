@@ -40,12 +40,15 @@ export default function ServicePageContent({ service }) {
             <p className="text-lg text-ink-muted leading-relaxed mb-8">
               {service.intro}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 flex-wrap">
               <ConsultationCta>
-                Request a tailored quotation
+                Book a free consultation
+              </ConsultationCta>
+              <ConsultationCta href="/contact#enquiry-form" variant="secondary">
+                Contact Sterling Crest Accountants
               </ConsultationCta>
               <ConsultationCta href="/services" variant="secondary">
-                All services
+                View all accountancy services
               </ConsultationCta>
             </div>
           </div>
@@ -109,8 +112,9 @@ export default function ServicePageContent({ service }) {
                 <Link
                   href={`/services/${item.slug}`}
                   className="block h-full p-5 rounded-xl border border-gold/20 hover:border-gold/50 text-ink hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                  aria-label={`View ${item.title} services`}
                 >
-                  <span className="font-semibold">{item.title}</span>
+                  <span className="font-semibold">View {item.title} services</span>
                   <span className="block text-sm text-ink-muted mt-2">
                     {item.summary}
                   </span>
@@ -133,10 +137,21 @@ export default function ServicePageContent({ service }) {
             Discuss {service.shortTitle.toLowerCase()} with our team
           </h2>
           <p className="text-ink-muted mb-8">
-            Request a tailored quotation. We will confirm scope and fees before
-            any engagement begins.
+            Book a free consultation on Picktime or send an enquiry. We will
+            confirm scope and fees before any engagement begins.
           </p>
-          <ConsultationCta location="service_page">Book a Consultation</ConsultationCta>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <ConsultationCta location="service_page">
+              Book a free consultation
+            </ConsultationCta>
+            <ConsultationCta
+              href="/contact#enquiry-form"
+              variant="secondary"
+              location="service_page"
+            >
+              Contact Sterling Crest Accountants
+            </ConsultationCta>
+          </div>
         </div>
       </section>
     </PageShell>

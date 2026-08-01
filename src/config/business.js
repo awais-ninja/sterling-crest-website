@@ -1,7 +1,14 @@
 /**
  * Central business configuration for Sterling Crest Accountants.
  * Leave unconfirmed fields as empty strings, never display empty values publicly.
+ * Do not invent reviews, memberships, social profiles or office locations.
  */
+
+export const napDetails = {
+  name: "Sterling Crest Accountants",
+  address: "530 Manor Mills, Ingram Street, Leeds, England, LS11 9BR",
+  phone: "+44 7417 532136",
+};
 
 export const businessDetails = {
   legalName: "Sterling Crest Accountants Ltd",
@@ -9,35 +16,53 @@ export const businessDetails = {
   companyNumber: "16941931",
   registrationCountry: "England and Wales",
 
-  registeredOffice:
-    "530 Manor Mills, Ingram Street, Leeds, England, LS11 9BR",
+  registeredOffice: napDetails.address,
   registeredOfficeLines: [
     "530 Manor Mills",
     "Ingram Street",
     "Leeds",
     "England",
     "LS11 9BR",
+    "United Kingdom",
   ],
 
-  phone: "+44 7417 532136",
+  phone: napDetails.phone,
   phoneTel: "+447417532136",
   email: "info@sterlingcrest.co.uk",
   whatsappNumber: "",
 
-  websiteUrl: "https://sterlingcrest.co.uk",
+  websiteUrl: "https://www.sterlingcrest.co.uk",
   consultationUrl:
     "https://www.picktime.com/home/b78ca841-f132-42e5-a485-f99e71f9e1b7",
 
   businessHours: "Monday to Friday, 8:00am to 5:00pm",
   weekendHours: "Saturday and Sunday, appointments only",
   responseTime: "We aim to respond to new enquiries within one working day.",
-  areasServed: "Individuals and businesses across the United Kingdom",
+  areasServed: "United Kingdom",
   onlineConsultations: true,
 
+  /** Google Business Profile URL — leave empty until confirmed. */
+  googleBusinessProfileUrl: "",
+  /** @deprecated Use googleBusinessProfileUrl */
   googleBusinessUrl: "",
+
+  socialLinks: {
+    linkedin: "",
+    facebook: "",
+    instagram: "",
+    x: "",
+  },
+
+  /** Legacy individual fields kept in sync via getters below for older imports. */
   linkedinUrl: "",
   facebookUrl: "",
   instagramUrl: "",
+
+  /**
+   * Genuine reviews only. Leave empty until verified testimonials are supplied.
+   * Shape: { name, platform, rating, text, date }
+   */
+  reviews: [],
 
   amlSupervisor: "",
   professionalBody: "",
@@ -117,13 +142,52 @@ export function getEmailHref(subject = "Accountancy enquiry") {
   return `mailto:${businessDetails.email}?subject=${encodeURIComponent(subject)}`;
 }
 
+export function getGoogleBusinessProfileUrl() {
+  if (hasValue(businessDetails.googleBusinessProfileUrl)) {
+    return businessDetails.googleBusinessProfileUrl.trim();
+  }
+  if (hasValue(businessDetails.googleBusinessUrl)) {
+    return businessDetails.googleBusinessUrl.trim();
+  }
+  return "";
+}
+
+/** Configured public social / profile URLs for sameAs and UI. */
 export function getSocialProfiles() {
+  const links = businessDetails.socialLinks || {};
   return [
-    businessDetails.linkedinUrl,
-    businessDetails.facebookUrl,
-    businessDetails.instagramUrl,
-    businessDetails.googleBusinessUrl,
+    links.linkedin || businessDetails.linkedinUrl,
+    links.facebook || businessDetails.facebookUrl,
+    links.instagram || businessDetails.instagramUrl,
+    links.x,
+    getGoogleBusinessProfileUrl(),
   ].filter(hasValue);
+}
+
+export function getPublicSocialLinks() {
+  const links = businessDetails.socialLinks || {};
+  return [
+    {
+      label: "LinkedIn",
+      href: links.linkedin || businessDetails.linkedinUrl,
+      ariaLabel: `${businessDetails.tradingName} on LinkedIn`,
+    },
+    {
+      label: "Facebook",
+      href: links.facebook || businessDetails.facebookUrl,
+      ariaLabel: `${businessDetails.tradingName} on Facebook`,
+    },
+    {
+      label: "Instagram",
+      href: links.instagram || businessDetails.instagramUrl,
+      ariaLabel: `${businessDetails.tradingName} on Instagram`,
+    },
+    {
+      label: "X",
+      href: links.x,
+      ariaLabel: `${businessDetails.tradingName} on X`,
+    },
+  ].filter((item) => hasValue(item.href));
 }
 
 export function getCompanyDisclosure() {
@@ -131,8 +195,8 @@ export function getCompanyDisclosure() {
 }
 
 export function getRegisteredOfficeDisclosure() {
-  if (!hasValue(businessDetails.registeredOffice)) return "";
-  return `Address: ${businessDetails.registeredOffice}.`;
+  if (!hasValue(napDetails.address)) return "";
+  return `Address: ${napDetails.address}.`;
 }
 
 export const clientTypeOptions = [

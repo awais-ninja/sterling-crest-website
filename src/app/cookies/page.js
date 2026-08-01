@@ -52,8 +52,8 @@ export default function CookiesPage() {
             <Card title="Analytics cookies">
               <p>
                 Analytics cookies help us understand how visitors use the site,
-                such as which pages are viewed. Analytics tools are only loaded
-                if a measurement ID is configured and you have given consent.
+                such as which pages are viewed. Google Analytics and Google Tag
+                Manager are only loaded if configured and you have given consent.
                 They remain disabled by default.
               </p>
             </Card>

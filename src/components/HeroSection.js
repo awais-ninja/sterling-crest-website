@@ -51,16 +51,16 @@ export default function HeroSection() {
           </p>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-ink leading-tight break-words">
-            Specialist UK Accountants for Limited Companies, Company Accounts
-            and Payroll
+            UK Accountants for Limited Companies, Self Assessment and Company
+            Accounts
           </h1>
 
           <p className="text-base sm:text-lg text-ink-muted leading-relaxed">
-            UK accountants for self assessment, company accounts, bookkeeping,
-            payroll and company formation. Clear fixed fee support for limited
-            companies, sole traders, landlords and small businesses across the
-            UK, with HMRC compliant accounts and practical advice you can use
-            week to week.
+            Accounting and tax support for limited companies, self employed
+            professionals and landlords across the UK. Fixed fee help with
+            bookkeeping, payroll, VAT returns, corporation tax, company
+            accounts and self assessment tax returns, with clear advice you can
+            use week to week.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">

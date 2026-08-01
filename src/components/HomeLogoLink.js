@@ -28,7 +28,7 @@ export default function HomeLogoLink({
       href="/"
       onClick={handleClick}
       className={className}
-      aria-label={`${businessDetails.legalName} home`}
+      aria-label="Sterling Crest Accountants homepage"
     >
       <Image
         src="/logo.svg"

@@ -68,8 +68,8 @@ export default function WhoWeServePage() {
                   <p className="text-ink-muted text-sm leading-relaxed mb-4">
                     {audience.summary}
                   </p>
-                  <span className="text-gold text-sm font-medium">
-                    Learn more →
+                  <span className="text-gold text-sm font-medium underline underline-offset-2">
+                    View accountants for {audience.title} →
                   </span>
                 </Link>
               ))}

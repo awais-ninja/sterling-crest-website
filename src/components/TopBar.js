@@ -3,7 +3,9 @@
 import {
   businessDetails,
   getEmailHref,
+  getGoogleBusinessProfileUrl,
   getPhoneHref,
+  getPublicSocialLinks,
   getWhatsAppHref,
   hasValue,
 } from "@/config/business";
@@ -17,13 +19,24 @@ export default function TopBar() {
   const phoneHref = getPhoneHref();
   const emailHref = getEmailHref();
   const whatsappHref = getWhatsAppHref();
+  const gbpUrl = getGoogleBusinessProfileUrl();
 
   const socials = [
-    { label: "LinkedIn", href: businessDetails.linkedinUrl },
-    { label: "Facebook", href: businessDetails.facebookUrl },
-    { label: "Instagram", href: businessDetails.instagramUrl },
-    { label: "Google Business", href: businessDetails.googleBusinessUrl },
-  ].filter((item) => hasValue(item.href));
+    ...getPublicSocialLinks().map((item) => ({
+      label: item.label,
+      href: item.href,
+      ariaLabel: item.ariaLabel,
+    })),
+    ...(hasValue(gbpUrl)
+      ? [
+          {
+            label: "Google Business Profile",
+            href: gbpUrl,
+            ariaLabel: "View our Google Business Profile",
+          },
+        ]
+      : []),
+  ];
 
   const hasLeft =
     hasValue(businessDetails.email) ||
@@ -130,7 +143,9 @@ export default function TopBar() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`${social.label} (opens in a new tab)`}
+                  aria-label={
+                    social.ariaLabel || `${social.label} (opens in a new tab)`
+                  }
                   className="link-muted min-h-11 py-1 inline-flex items-center"
                 >
                   {social.label}

@@ -61,7 +61,7 @@ export default function ClientsSection() {
                   {client.description}
                 </p>
                 <span className="text-gold underline underline-offset-2 text-sm font-medium">
-                  Learn more →
+                  View accountants for {client.title.toLowerCase()} →
                 </span>
               </Link>
             ))}

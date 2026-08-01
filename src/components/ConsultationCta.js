@@ -33,6 +33,9 @@ export function ConsultationCta({
   function handleClick() {
     if (isExternalHref(href)) {
       trackEvent(AnalyticsEvents.CONSULTATION_CLICK, { location });
+      if (/picktime\.com/i.test(href)) {
+        trackEvent(AnalyticsEvents.PICKTIME_CLICK, { location });
+      }
     }
   }
 

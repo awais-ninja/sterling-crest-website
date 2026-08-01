@@ -99,23 +99,22 @@ export async function POST(request) {
       return NextResponse.json({ message: USER_ERROR }, { status: 502 });
     }
 
+    let rawBody = "";
     let sheetResult = null;
     try {
-      sheetResult = await sheetResponse.json();
+      rawBody = await sheetResponse.text();
+      sheetResult = rawBody ? JSON.parse(rawBody) : null;
     } catch {
       sheetResult = null;
     }
 
-    const confirmed =
-      sheetResponse.ok &&
-      sheetResult &&
-      (sheetResult.success === true || sheetResult.ok === true);
+    const confirmed = isWebhookSuccess(sheetResponse, sheetResult, rawBody);
 
     if (!confirmed) {
-      console.error(
-        "Google Sheets webhook did not confirm success.",
-        sheetResponse.status
-      );
+      console.error("Google Sheets webhook did not confirm success.", {
+        status: sheetResponse.status,
+        body: rawBody.slice(0, 300),
+      });
       return NextResponse.json({ message: USER_ERROR }, { status: 502 });
     }
 
@@ -124,4 +123,30 @@ export async function POST(request) {
     console.error("Contact API unexpected error.");
     return NextResponse.json({ message: USER_ERROR }, { status: 500 });
   }
+}
+
+function isWebhookSuccess(response, result, rawBody) {
+  if (!response.ok) return false;
+
+  if (result && typeof result === "object") {
+    if (result.success === true || result.ok === true) return true;
+
+    const status =
+      typeof result.status === "string" ? result.status.toLowerCase() : "";
+    if (status === "success" || status === "ok" || status === "done") {
+      return true;
+    }
+
+    // Explicit failure from Apps Script
+    if (result.success === false || result.ok === false) return false;
+  }
+
+  const text = String(rawBody || "")
+    .trim()
+    .toLowerCase();
+  if (text === "ok" || text === "success" || text === '{"success":true}') {
+    return true;
+  }
+
+  return false;
 }

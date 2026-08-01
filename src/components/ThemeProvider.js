@@ -7,6 +7,7 @@ import {
   useLayoutEffect,
   useMemo,
   useState,
+  startTransition,
 } from "react";
 
 const STORAGE_KEY = "sc-theme";
@@ -56,9 +57,11 @@ export function ThemeProvider({ children, defaultTheme = "dark" }) {
 
   useLayoutEffect(() => {
     const preferred = readPreferredTheme(initial);
-    setThemeState(preferred);
     applyTheme(preferred);
     persistTheme(preferred);
+    startTransition(() => {
+      setThemeState(preferred);
+    });
   }, [initial]);
 
   const setTheme = useCallback((next) => {

@@ -71,8 +71,8 @@ export default function ServicesPage() {
                   <p className="text-ink-muted text-sm leading-relaxed mb-4">
                     {service.summary}
                   </p>
-                  <span className="text-gold text-sm font-medium">
-                    Learn more →
+                  <span className="text-gold text-sm font-medium underline underline-offset-2">
+                    View {service.title} services →
                   </span>
                 </Link>
               ))}
