@@ -97,7 +97,7 @@ export default function ClientsSection() {
             href="/who-we-serve"
             className="group inline-flex items-center gap-2 link-gold font-semibold text-lg"
           >
-            View all audiences
+            View all
             <span className="link-arrow" aria-hidden="true">
               →
             </span>

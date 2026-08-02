@@ -62,7 +62,7 @@ export default function HtmlSitemapPage() {
               key={category.id}
               title={`Who we serve: ${category.title}`}
             >
-              <SitemapLink href="/who-we-serve" label="All audiences" />
+              <SitemapLink href="/who-we-serve" label="Who we serve" />
               {category.audiences.map((audience) => (
                 <SitemapLink
                   key={audience.slug}

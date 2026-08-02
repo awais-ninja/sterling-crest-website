@@ -23,7 +23,7 @@ const initialForm = {
   website: "",
 };
 
-export default function ContactForm({ defaultService = "" }) {
+export default function ContactForm({ defaultService = "", className = "" }) {
   const router = useRouter();
   const formId = useId();
   const errorSummaryRef = useRef(null);
@@ -113,7 +113,7 @@ export default function ContactForm({ defaultService = "" }) {
       id="enquiry-form"
       noValidate
       onSubmit={handleSubmit}
-      className="relative bg-gradient-to-br from-surface-elevated to-surface p-6 md:p-8 rounded-xl border border-gold/20 space-y-5"
+      className={`relative bg-gradient-to-br from-surface-elevated to-surface p-6 md:p-8 rounded-xl border border-gold/20 space-y-5 ${className}`.trim()}
       aria-describedby={`${formId}-status`}
     >
       <div

@@ -73,7 +73,7 @@ export const businessDetails = {
   icoRegistrationNumber: "",
   professionalIndemnityDetails: "",
 
-  yearsCombinedExperience: "15+",
+  yearsCombinedExperience: "",
   clientsSupported: "",
 
   brandDescription:
@@ -84,13 +84,14 @@ export const businessDetails = {
 
   trustStats: [
     {
-      value: "15+",
-      label: "Years’ Combined Experience",
+      value: "",
+      label: "Combined experience",
       enabled: true,
+      isTextOnly: true,
     },
     {
       value: "",
-      label: "Personal support for businesses and individuals",
+      label: "Practical support for individuals and businesses",
       enabled: true,
       isTextOnly: true,
     },

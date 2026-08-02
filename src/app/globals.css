@@ -81,6 +81,37 @@ img {
   height: auto;
 }
 
+/* Clickable controls use a pointer, not the text I-beam */
+a[href],
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]),
+summary,
+label[for],
+input[type="submit"]:not(:disabled),
+input[type="button"]:not(:disabled),
+input[type="reset"]:not(:disabled),
+input[type="checkbox"],
+input[type="radio"],
+select:not(:disabled),
+.button-primary,
+.button-secondary,
+.card-interactive,
+.social-interactive,
+.footer-link,
+.link-gold,
+.link-muted,
+.nav-link {
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
 :focus-visible {
   outline: 3px solid rgb(var(--gold) / 0.9);
   outline-offset: 3px;

@@ -6,8 +6,7 @@ import { businessDetails } from "@/config/business";
 import { getSiteUrl, siteConfig } from "@/config/site";
 import AnalyticsConsentSync from "@/components/AnalyticsConsentSync";
 import AnalyticsPageView from "@/components/AnalyticsPageView";
-import {
-  GoogleTagHeadScripts,
+import GoogleTags, {
   GoogleTagManagerNoscript,
 } from "@/components/GoogleTags";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -98,7 +97,6 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en-GB" data-theme={theme} suppressHydrationWarning>
       <head>
-        <GoogleTagHeadScripts />
         <link
           rel="preload"
           as="image"
@@ -122,6 +120,7 @@ export default async function RootLayout({ children }) {
         suppressHydrationWarning
       >
         <GoogleTagManagerNoscript />
+        <GoogleTags />
         <ThemeProvider defaultTheme={theme}>
           {children}
           <AnalyticsConsentSync />

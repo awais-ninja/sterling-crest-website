@@ -137,7 +137,7 @@ export default function Navbar() {
                       setOpenMenu={setOpenMenu}
                       isActive={isActive("/who-we-serve")}
                       linkClass={linkClass}
-                      viewAllLabel="All audiences"
+                      viewAllLabel="View all"
                       columns={audienceCategories.map((category) => ({
                         title: category.title,
                         items: category.audiences.map((audience) => ({
@@ -293,7 +293,7 @@ export default function Navbar() {
                         expanded={mobileExpanded === "audiences"}
                         setExpanded={setMobileExpanded}
                         onNavigate={() => setIsOpen(false)}
-                        viewAllLabel="View all audiences"
+                        viewAllLabel="View all"
                         columns={audienceCategories.map((category) => ({
                           title: category.title,
                           items: category.audiences.map((audience) => ({
