@@ -238,9 +238,13 @@ function ContactPageInner() {
                 <h2 className="text-3xl font-bold text-ink mb-3">
                   Send an enquiry
                 </h2>
-                <p className="text-ink-muted text-sm leading-relaxed max-w-xl">
-                  Prefer to write first? Share a few details below. Your
-                  information is used only to respond to this enquiry. See our{" "}
+                <p className="text-ink-muted text-sm leading-relaxed max-w-xl mb-3">
+                  Prefer to write first? Share a few details below.
+                </p>
+                <p className="text-ink-muted text-sm leading-relaxed max-w-xl rounded-xl border border-gold/20 bg-surface-elevated/60 px-4 py-3">
+                  Your information will be used only to respond to your enquiry
+                  and assess the support you require. Submitting this form does
+                  not create an accountant–client relationship. See our{" "}
                   <Link href="/privacy" className="link-gold">
                     Privacy Policy
                   </Link>

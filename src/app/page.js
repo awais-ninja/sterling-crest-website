@@ -1,6 +1,5 @@
 import PageShell from "@/components/PageShell";
 import HeroSection from "@/components/HeroSection";
-import TrustSection from "@/components/TrustSection";
 import ServicesSection from "@/components/ServicesSection";
 import ClientsSection from "@/components/ClientsSection";
 import LocalRelevance from "@/components/LocalRelevance";
@@ -14,14 +13,15 @@ import {
   getFaqSchema,
   getOrganizationSchema,
   getReviewsSchema,
+  getSiteNavigationSchema,
   getWebsiteSchema,
 } from "@/lib/schema";
 import { homepageFaqs } from "@/data/faqs";
 
 export const metadata = createPageMetadata({
-  title: "UK Accountants for Limited Companies and Self Assessment",
+  title: "UK Accountants for Businesses & Individuals | Sterling Crest",
   description:
-    "UK accountants for limited companies, self assessment, company accounts, corporation tax, bookkeeping, payroll, VAT and landlord accounting.",
+    "Practical UK accountants for businesses and individuals. Support with company accounts, tax returns, bookkeeping, payroll, VAT and landlord accounting.",
   path: "/",
 });
 
@@ -33,12 +33,12 @@ export default function Home() {
       jsonLd={[
         getOrganizationSchema(),
         getWebsiteSchema(),
+        getSiteNavigationSchema(),
         getFaqSchema(homepageFaqs),
         ...(reviewSchema || []),
       ]}
     >
       <HeroSection />
-      <TrustSection />
       <ServicesSection />
       <ClientsSection />
       <LocalRelevance />

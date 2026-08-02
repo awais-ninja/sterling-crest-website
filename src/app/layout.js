@@ -20,7 +20,7 @@ const geistSans = Geist({
 export const metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: `${businessDetails.tradingName} | UK Accountants`,
+    default: `UK Accountants for Businesses & Individuals | Sterling Crest`,
     template: `%s`,
   },
   description: siteConfig.description,
@@ -75,6 +75,9 @@ export const metadata = {
     index: true,
     follow: true,
   },
+  other: {
+    "llms-txt": `${getSiteUrl()}/llms.txt`,
+  },
 };
 
 export const viewport = {
@@ -97,6 +100,12 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en-GB" data-theme={theme} suppressHydrationWarning>
       <head>
+        <link
+          rel="alternate"
+          type="text/plain"
+          href={`${getSiteUrl()}/llms.txt`}
+          title="LLM website information"
+        />
         <link
           rel="preload"
           as="image"

@@ -113,18 +113,64 @@ export function getOrganizationSchema() {
   });
 }
 
+/**
+ * WebSite schema plus SiteNavigationElement entries to support clear sitelinks.
+ */
 export function getWebsiteSchema() {
   const siteUrl = getSiteUrl();
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+    { name: "Who We Serve", path: "/who-we-serve" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
+    { name: "FAQs", path: "/faqs" },
+  ];
+
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: businessDetails.tradingName,
+    alternateName: businessDetails.legalName,
     url: siteUrl,
+    description: businessDetails.brandDescription,
+    inLanguage: "en-GB",
     publisher: {
       "@type": "Organization",
       name: businessDetails.tradingName,
       url: siteUrl,
     },
+    hasPart: navItems.map((item) => ({
+      "@type": "WebPage",
+      name: item.name,
+      url: `${siteUrl}${item.path === "/" ? "" : item.path}`,
+    })),
+  };
+}
+
+/** Explicit navigation nodes for Google sitelink clarity. */
+export function getSiteNavigationSchema() {
+  const siteUrl = getSiteUrl();
+  const items = [
+    { name: "Accountancy Services", path: "/services" },
+    { name: "About Sterling Crest", path: "/about" },
+    { name: "Contact", path: "/contact" },
+    { name: "Who We Serve", path: "/who-we-serve" },
+    { name: "Bookkeeping", path: "/services/bookkeeping" },
+    { name: "Annual Accounts", path: "/services/annual-accounts" },
+    { name: "Self Assessment", path: "/services/self-assessment" },
+    { name: "Corporation Tax", path: "/services/corporation-tax" },
+  ];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "SiteNavigationElement",
+      position: index + 1,
+      name: item.name,
+      url: `${siteUrl}${item.path}`,
+    })),
   };
 }
 

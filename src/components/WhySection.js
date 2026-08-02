@@ -43,7 +43,7 @@ export default function WhySection() {
             How we work with you
           </h2>
           <p className="text-lg text-ink-muted max-w-3xl mx-auto">
-            Practical benefits that help day to day finances and statutory
+            Practical benefits that help day-to-day finances and statutory
             filings run more smoothly.
           </p>
         </Reveal>

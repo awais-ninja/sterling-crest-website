@@ -25,7 +25,7 @@ export default function HowItWorksSection() {
       number: "04",
       title: "Review and next steps",
       description:
-        "We explain the outcomes and confirm any follow up actions or ongoing support.",
+        "We explain the outcomes and confirm any follow-up actions or ongoing support.",
     },
   ];
 

@@ -77,7 +77,7 @@ export const businessDetails = {
   clientsSupported: "",
 
   brandDescription:
-    "Practical accounting and tax support for individuals, landlords, self employed professionals and growing businesses across the UK.",
+    "Practical accounting and tax support for individuals, landlords, self-employed professionals and growing businesses across the UK.",
 
   creditUrl: "https://www.awaisdigitalservices.co.uk",
   creditName: "ADS",

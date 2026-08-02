@@ -3,12 +3,10 @@ import { businessDetails } from "@/config/business";
 import { ConsultationCta } from "@/components/ConsultationCta";
 
 const trustPoints = [
-  "Proven experience",
-  "Dedicated Support",
-  "Secure & Compliant",
-  "Grow Your Business",
-  "HMRC Support",
-  "Cloud Accounting",
+  "Practical accountancy experience",
+  "Confidential and compliance-focused",
+  "Clear fees agreed before work begins",
+  "UK-wide remote support",
 ];
 
 export default function HeroSection() {
@@ -47,25 +45,26 @@ export default function HeroSection() {
           </p>
 
           <h1 className="hero-enter hero-enter-delay-1 text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-ink leading-tight break-words">
-            UK Accountants for Limited Companies, Self Assessment and Company
-            Accounts
+            Practical accountants for businesses and individuals across the UK
           </h1>
 
           <p className="hero-enter hero-enter-delay-2 text-base sm:text-lg text-ink-muted leading-relaxed">
-            Accounting and tax support for limited companies, self employed
-            professionals and landlords across the UK. Fixed fee help with
-            bookkeeping, payroll, VAT returns, corporation tax, company
-            accounts and self assessment tax returns, with clear advice you can
-            use week to week.
+            Clear support with company accounts, tax returns, bookkeeping,
+            payroll and VAT—backed by organised processes and straightforward
+            advice.
           </p>
 
           <div className="hero-enter hero-enter-delay-3 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
             <ConsultationCta location="hero">
-              Book Free Consultation
+              Book a Consultation
             </ConsultationCta>
-            <Link href="/services" className="button-secondary">
-              View Services
-            </Link>
+            <ConsultationCta
+              href="/contact#enquiry-form"
+              variant="secondary"
+              location="hero"
+            >
+              Send an Enquiry
+            </ConsultationCta>
           </div>
 
           <ul className="hero-enter hero-enter-delay-3 flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-2 pt-2 text-sm text-ink-muted">

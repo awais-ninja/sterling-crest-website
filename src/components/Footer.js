@@ -150,6 +150,9 @@ export default function Footer() {
                     Registered office
                   </span>
                   <span className="text-ink-muted">{napDetails.address}</span>
+                  <span className="block text-ink-muted text-xs mt-2 leading-relaxed">
+                    Meetings are available by prior appointment or online.
+                  </span>
                 </p>
               )}
               <p>
@@ -191,7 +194,8 @@ export default function Footer() {
           </p>
           {hasValue(napDetails.address) && (
             <p className="text-ink-muted text-sm leading-relaxed">
-              Address: {napDetails.address}.
+              Registered office: {napDetails.address}. Meetings are available by
+              prior appointment or online.
             </p>
           )}
         </div>
@@ -229,7 +233,7 @@ export default function Footer() {
               rights reserved.
             </p>
             <p className="text-ink-muted text-sm">
-              Made with ❤️ by{" "}
+              Website by{" "}
               {creditIsLink ? (
                 <a
                   href={businessDetails.creditUrl}

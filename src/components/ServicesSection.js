@@ -27,7 +27,7 @@ export default function ServicesSection() {
             Accountancy and tax services
           </h2>
           <p className="text-lg text-ink-muted max-w-3xl mx-auto">
-            From day to day bookkeeping to year end accounts and HMRC
+            From day-to-day bookkeeping to year-end accounts and HMRC
             submissions. Request a tailored quotation for the support you need.
           </p>
         </Reveal>

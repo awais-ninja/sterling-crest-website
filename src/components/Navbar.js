@@ -9,13 +9,44 @@ import {
   getWhatsAppHref,
 } from "@/config/business";
 import SocialLinks from "@/components/SocialLinks";
+import {
+  featuredAudienceNav,
+  featuredServiceNav,
+} from "@/config/navigationMenus";
 import { navigation } from "@/config/site";
-import { getAudienceCategoriesWithAudiences } from "@/data/audiences";
-import { getServiceCategoriesWithServices } from "@/data/services";
+import { getServiceBySlug } from "@/data/services";
 import HomeLogoLink from "@/components/HomeLogoLink";
 import ThemeToggle from "@/components/ThemeToggle";
 import TopBar from "@/components/TopBar";
 import { AnalyticsEvents, trackEvent } from "@/lib/analytics";
+
+function buildFeaturedServiceColumns() {
+  return featuredServiceNav.map((group) => ({
+    title: group.title,
+    items: group.items
+      .map((item) => {
+        const service = getServiceBySlug(item.slug);
+        if (!service) return null;
+        return {
+          href: `/services/${service.slug}`,
+          label: item.label || service.navLabel,
+        };
+      })
+      .filter(Boolean),
+  }));
+}
+
+function buildFeaturedAudienceColumns() {
+  return [
+    {
+      title: "Clients we support",
+      items: featuredAudienceNav.map((item) => ({
+        href: `/who-we-serve/${item.slug}`,
+        label: item.label,
+      })),
+    },
+  ];
+}
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -26,8 +57,8 @@ export default function Navbar() {
   const [mobileExpanded, setMobileExpanded] = useState(null);
   const phoneHref = getPhoneHref();
   const whatsappHref = getWhatsAppHref();
-  const serviceCategories = getServiceCategoriesWithServices();
-  const audienceCategories = getAudienceCategoriesWithAudiences();
+  const serviceMenuColumns = buildFeaturedServiceColumns();
+  const audienceMenuColumns = buildFeaturedAudienceColumns();
 
   if (pathname !== menuPathname) {
     setMenuPathname(pathname);
@@ -114,14 +145,8 @@ export default function Navbar() {
                       setOpenMenu={setOpenMenu}
                       isActive={isActive("/services")}
                       linkClass={linkClass}
-                      viewAllLabel="All services"
-                      columns={serviceCategories.map((category) => ({
-                        title: category.title,
-                        items: category.services.map((service) => ({
-                          href: `/services/${service.slug}`,
-                          label: service.navLabel,
-                        })),
-                      }))}
+                      viewAllLabel="View all services"
+                      columns={serviceMenuColumns}
                     />
                   );
                 }
@@ -137,14 +162,8 @@ export default function Navbar() {
                       setOpenMenu={setOpenMenu}
                       isActive={isActive("/who-we-serve")}
                       linkClass={linkClass}
-                      viewAllLabel="View all"
-                      columns={audienceCategories.map((category) => ({
-                        title: category.title,
-                        items: category.audiences.map((audience) => ({
-                          href: `/who-we-serve/${audience.slug}`,
-                          label: audience.navLabel,
-                        })),
-                      }))}
+                      viewAllLabel="View all clients"
+                      columns={audienceMenuColumns}
                     />
                   );
                 }
@@ -271,13 +290,7 @@ export default function Navbar() {
                         setExpanded={setMobileExpanded}
                         onNavigate={() => setIsOpen(false)}
                         viewAllLabel="View all services"
-                        columns={serviceCategories.map((category) => ({
-                          title: category.title,
-                          items: category.services.map((service) => ({
-                            href: `/services/${service.slug}`,
-                            label: service.navLabel,
-                          })),
-                        }))}
+                        columns={serviceMenuColumns}
                       />
                     );
                   }
@@ -293,14 +306,8 @@ export default function Navbar() {
                         expanded={mobileExpanded === "audiences"}
                         setExpanded={setMobileExpanded}
                         onNavigate={() => setIsOpen(false)}
-                        viewAllLabel="View all"
-                        columns={audienceCategories.map((category) => ({
-                          title: category.title,
-                          items: category.audiences.map((audience) => ({
-                            href: `/who-we-serve/${audience.slug}`,
-                            label: audience.navLabel,
-                          })),
-                        }))}
+                        viewAllLabel="View all clients"
+                        columns={audienceMenuColumns}
                       />
                     );
                   }
@@ -521,7 +528,17 @@ function MegaMenu({
             aria-hidden="true"
           />
 
-          <div className="grid grid-cols-4 gap-x-6 xl:gap-x-8 gap-y-6 p-5 sm:p-6 lg:p-7">
+          <div
+            className={`grid gap-x-6 xl:gap-x-8 gap-y-6 p-5 sm:p-6 lg:p-7 ${
+              columns.length >= 4
+                ? "grid-cols-2 lg:grid-cols-4"
+                : columns.length === 3
+                  ? "grid-cols-1 sm:grid-cols-3"
+                  : columns.length === 2
+                    ? "grid-cols-1 sm:grid-cols-2"
+                    : "grid-cols-1 max-w-md"
+            }`}
+          >
             {columns.map((column) => (
               <div key={column.title} className="min-w-0">
                 <p className="mb-3 pb-2 border-b border-gold/20 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-gold">

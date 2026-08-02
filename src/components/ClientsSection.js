@@ -9,25 +9,29 @@ const clientTypes = [
     title: "Limited companies",
     href: "/who-we-serve/limited-companies",
     description:
-      "Accounts, corporation tax, payroll and VAT support for directors who need organised year end and day to day compliance.",
+      "Accounts, corporation tax, payroll and VAT support for directors who need organised year-end and day-to-day compliance.",
+    cta: "Accounting for limited companies",
   },
   {
     title: "Sole traders and freelancers",
     href: "/who-we-serve/self-employed",
     description:
-      "Bookkeeping and self assessment support designed for self employed professionals managing busy workloads.",
+      "Bookkeeping and self assessment support designed for self-employed professionals managing busy workloads.",
+    cta: "Support for sole traders",
   },
   {
     title: "Landlords and property investors",
     href: "/who-we-serve/landlords",
     description:
       "Property income summaries, expense tracking and self assessment support for UK rental portfolios.",
+    cta: "Accounting for landlords",
   },
   {
-    title: "Start ups and growing businesses",
+    title: "Start-ups and growing businesses",
     href: "/who-we-serve/startups",
     description:
       "Company formation, cashflow forecasting and practical advisory support as you scale.",
+    cta: "Support for start-ups",
   },
 ];
 
@@ -63,7 +67,7 @@ export default function ClientsSection() {
                   {client.description}
                 </p>
                 <span className="inline-flex items-center gap-1 text-gold underline underline-offset-2 text-sm font-medium">
-                  View accountants for {client.title.toLowerCase()}
+                  {client.cta}
                   <span className="link-arrow" aria-hidden="true">
                     →
                   </span>
@@ -97,7 +101,7 @@ export default function ClientsSection() {
             href="/who-we-serve"
             className="group inline-flex items-center gap-2 link-gold font-semibold text-lg"
           >
-            View all
+            View all clients
             <span className="link-arrow" aria-hidden="true">
               →
             </span>

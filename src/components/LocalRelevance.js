@@ -19,8 +19,9 @@ export default function LocalRelevance() {
           <p className="text-ink-muted leading-relaxed text-base md:text-lg">
             {napDetails.name} is registered in Leeds, West Yorkshire, and
             provides remote accounting and tax support to clients across the
-            United Kingdom. Consultations are arranged by appointment by phone
-            or online video call.
+            United Kingdom. The address below is the registered office.
+            Consultations are by prior appointment by phone or online video
+            call—not a walk-in office.
           </p>
           <p className="text-sm text-ink-muted">
             Registered office: {napDetails.address}
