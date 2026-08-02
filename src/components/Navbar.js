@@ -3,7 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
-import { businessDetails, getPhoneHref } from "@/config/business";
+import {
+  businessDetails,
+  getPhoneHref,
+  getWhatsAppHref,
+} from "@/config/business";
+import SocialLinks from "@/components/SocialLinks";
 import { navigation } from "@/config/site";
 import { getAudienceCategoriesWithAudiences } from "@/data/audiences";
 import { getServiceCategoriesWithServices } from "@/data/services";
@@ -20,6 +25,7 @@ export default function Navbar() {
   const [menuPathname, setMenuPathname] = useState(pathname);
   const [mobileExpanded, setMobileExpanded] = useState(null);
   const phoneHref = getPhoneHref();
+  const whatsappHref = getWhatsAppHref();
   const serviceCategories = getServiceCategoriesWithServices();
   const audienceCategories = getAudienceCategoriesWithAudiences();
 
@@ -67,7 +73,7 @@ export default function Navbar() {
   }
 
   const linkClass = (href, activeExtra = false) =>
-    `min-h-11 inline-flex items-center px-1 text-[0.95rem] font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold ${
+    `nav-link min-h-11 inline-flex items-center px-1 text-[0.95rem] font-medium transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold ${
       isActive(href) || activeExtra
         ? "text-gold"
         : "text-ink hover:text-gold"
@@ -208,7 +214,7 @@ export default function Navbar() {
       {isOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/55 z-40 lg:hidden"
+            className="fixed inset-0 bg-black/55 z-40 lg:hidden transition-opacity duration-200"
             onClick={() => setIsOpen(false)}
             aria-hidden="true"
           />
@@ -217,7 +223,7 @@ export default function Navbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
-            className="fixed top-0 right-0 h-full w-[min(100%,22rem)] bg-surface z-50 shadow-2xl lg:hidden overflow-y-auto border-l border-gold/35"
+            className="mobile-drawer mobile-drawer-enter fixed top-0 right-0 h-full w-[min(100%,22rem)] bg-surface z-50 shadow-2xl lg:hidden overflow-y-auto border-l border-gold/35"
           >
             <div className="p-5 sm:p-6">
               <div className="flex justify-between items-center mb-8 gap-3">
@@ -332,6 +338,23 @@ export default function Navbar() {
                     Call Us
                   </a>
                 )}
+                {whatsappHref && (
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Message Sterling Crest Accountants on WhatsApp"
+                    onClick={() => {
+                      trackEvent(AnalyticsEvents.WHATSAPP_CLICK, {
+                        location: "mobile_nav",
+                      });
+                      setIsOpen(false);
+                    }}
+                    className="flex items-center justify-center min-h-12 rounded-md border border-gold/40 text-ink font-medium hover:border-gold hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                  >
+                    WhatsApp Us
+                  </a>
+                )}
                 <a
                   href={businessDetails.consultationUrl}
                   target="_blank"
@@ -347,6 +370,15 @@ export default function Navbar() {
                 >
                   Book a Consultation
                 </a>
+                <div className="pt-2">
+                  <p className="text-xs uppercase tracking-wider text-ink-muted mb-2 text-center">
+                    Follow us
+                  </p>
+                  <SocialLinks
+                    location="mobile_nav"
+                    className="justify-center"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -432,6 +464,7 @@ function MegaMenu({
           aria-expanded={open}
           aria-controls={panelId}
           aria-haspopup="true"
+          data-open={open ? "true" : undefined}
           onFocus={openMenu}
           onClick={() => setOpenMenu(null)}
         >
@@ -479,7 +512,10 @@ function MegaMenu({
         onMouseEnter={openMenu}
         onMouseLeave={scheduleClose}
       >
-        <div className="rounded-xl border border-gold/30 bg-surface-elevated shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] overflow-hidden">
+        <div
+          className="mega-panel-inner rounded-xl border border-gold/30 bg-surface-elevated shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] overflow-hidden"
+          data-open={open ? "true" : "false"}
+        >
           <div
             className="h-0.5 bg-gradient-to-r from-gold via-gold/70 to-transparent"
             aria-hidden="true"
@@ -496,7 +532,7 @@ function MegaMenu({
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="block rounded-md px-2.5 py-2 text-[0.9rem] leading-snug text-ink hover:bg-surface hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                        className="block rounded-md px-2.5 py-2 text-[0.9rem] leading-snug text-ink hover:bg-surface hover:text-gold transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                         onClick={() => setOpenMenu(null)}
                       >
                         {item.label}

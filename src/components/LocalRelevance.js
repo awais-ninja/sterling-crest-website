@@ -1,3 +1,4 @@
+import Reveal from "@/components/Reveal";
 import { napDetails } from "@/config/business";
 
 /**
@@ -11,7 +12,7 @@ export default function LocalRelevance() {
       className="relative w-full bg-surface-elevated py-14 md:py-16 border-y border-gold/20"
     >
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="max-w-3xl mx-auto text-center space-y-4">
+        <Reveal className="max-w-3xl mx-auto text-center space-y-4">
           <h2 className="text-2xl md:text-3xl font-bold text-ink">
             Registered in Leeds, supporting clients across the UK
           </h2>
@@ -24,7 +25,7 @@ export default function LocalRelevance() {
           <p className="text-sm text-ink-muted">
             Registered office: {napDetails.address}
           </p>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

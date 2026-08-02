@@ -9,10 +9,15 @@ export default function PageShell({ children, jsonLd }) {
     <>
       <JsonLd data={jsonLd} />
       <Navbar />
-      <main id="main-content" className="min-h-screen pb-24 md:pb-0">
+      <main id="main-content" className="min-h-screen">
         {children}
       </main>
       <Footer />
+      {/* Clears fixed mobile contact bar so footer/CTA content is not covered */}
+      <div
+        className="h-[calc(5.75rem+env(safe-area-inset-bottom))] md:hidden"
+        aria-hidden="true"
+      />
       <MobileContactBar />
       <CookieConsent />
     </>

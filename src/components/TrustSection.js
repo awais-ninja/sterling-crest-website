@@ -1,3 +1,6 @@
+import Reveal from "@/components/Reveal";
+import StaggerGroup from "@/components/StaggerGroup";
+
 export default function TrustSection() {
   const features = [
     {
@@ -35,7 +38,7 @@ export default function TrustSection() {
   return (
     <section id="trust" className="relative w-full bg-surface py-20 md:py-24">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12 md:mb-16">
+        <Reveal className="text-center mb-12 md:mb-16">
           <p className="text-gold text-sm font-semibold uppercase tracking-wider mb-3">
             Why clients choose us
           </p>
@@ -46,21 +49,26 @@ export default function TrustSection() {
             Straightforward processes, careful handling of information and clear
             next steps without exaggerated claims.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <StaggerGroup
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
+          stagger={70}
+        >
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="bg-gradient-to-br from-surface-elevated to-surface p-6 md:p-8 rounded-2xl border border-gold/20"
+              className="card-interactive bg-gradient-to-br from-surface-elevated to-surface p-6 md:p-8 rounded-2xl"
             >
-              <h3 className="text-xl font-semibold text-ink mb-3">
+              <h3 className="card-heading text-xl font-semibold text-ink mb-3">
                 {feature.title}
               </h3>
-              <p className="text-ink-muted leading-relaxed">{feature.description}</p>
+              <p className="text-ink-muted leading-relaxed">
+                {feature.description}
+              </p>
             </div>
           ))}
-        </div>
+        </StaggerGroup>
       </div>
     </section>
   );

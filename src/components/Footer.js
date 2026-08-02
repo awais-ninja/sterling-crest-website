@@ -2,32 +2,35 @@ import Link from "next/link";
 import { ConsultationCta } from "@/components/ConsultationCta";
 import CookieSettingsButton from "@/components/CookieSettingsButton";
 import HomeLogoLink from "@/components/HomeLogoLink";
+import SocialLinks from "@/components/SocialLinks";
+import TrackedExternalLink from "@/components/TrackedExternalLink";
 import {
   businessDetails,
   footerServiceSlugs,
   getCompanyDisclosure,
   getEmailHref,
-  getGoogleBusinessProfileUrl,
   getPhoneHref,
   getPublicSocialLinks,
+  getWhatsAppHref,
   hasValue,
   napDetails,
 } from "@/config/business";
 import { footerLegalLinks, navigation } from "@/config/site";
 import { getServiceBySlug } from "@/data/services";
+import { AnalyticsEvents } from "@/lib/analytics";
 
 const footerServices = footerServiceSlugs
   .map((slug) => getServiceBySlug(slug))
   .filter(Boolean);
 
-const footerLinkClass = "link-muted text-sm";
+const footerLinkClass = "footer-link focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold";
 
 export default function Footer() {
   const emailHref = getEmailHref();
   const phoneHref = getPhoneHref();
+  const whatsappHref = getWhatsAppHref();
+  const hasSocialLinks = getPublicSocialLinks().length > 0;
   const creditIsLink = hasValue(businessDetails.creditUrl);
-  const socialLinks = getPublicSocialLinks();
-  const gbpUrl = getGoogleBusinessProfileUrl();
 
   return (
     <footer className="relative w-full bg-surface border-t border-gold/40">
@@ -60,7 +63,7 @@ export default function Footer() {
                 <li key={service.slug}>
                   <Link
                     href={`/services/${service.slug}`}
-                    className="link-muted text-sm leading-snug"
+                    className="footer-link leading-snug focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                   >
                     {service.navLabel}
                   </Link>
@@ -81,7 +84,10 @@ export default function Footer() {
             <ul className="space-y-2">
               {navigation.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="link-muted text-sm">
+                  <Link
+                    href={item.href}
+                    className="footer-link focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -122,6 +128,22 @@ export default function Footer() {
                   </a>
                 </p>
               )}
+              {whatsappHref && (
+                <p>
+                  <span className="block text-ink text-xs uppercase tracking-wider mb-1">
+                    WhatsApp
+                  </span>
+                  <TrackedExternalLink
+                    href={whatsappHref}
+                    eventName={AnalyticsEvents.WHATSAPP_CLICK}
+                    location="footer"
+                    ariaLabel="Message Sterling Crest Accountants on WhatsApp"
+                    className="link-gold"
+                  >
+                    WhatsApp Us
+                  </TrackedExternalLink>
+                </p>
+              )}
               {hasValue(napDetails.address) && (
                 <p>
                   <span className="block text-ink text-xs uppercase tracking-wider mb-1">
@@ -148,30 +170,15 @@ export default function Footer() {
                   Appointments only
                 </p>
               )}
-              {(socialLinks.length > 0 || hasValue(gbpUrl)) && (
-                <div className="pt-2 space-y-2">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.href}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.ariaLabel}
-                      className="block link-gold text-sm"
-                    >
-                      {social.label}
-                    </a>
-                  ))}
-                  {hasValue(gbpUrl) && (
-                    <a
-                      href={gbpUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block link-gold text-sm"
-                    >
-                      View our Google Business Profile
-                    </a>
-                  )}
+              {hasSocialLinks && (
+                <div className="pt-3">
+                  <span className="block text-ink text-xs uppercase tracking-wider mb-2">
+                    Follow us
+                  </span>
+                  <SocialLinks
+                    location="footer"
+                    className="justify-center sm:justify-start"
+                  />
                 </div>
               )}
             </div>

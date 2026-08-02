@@ -27,9 +27,13 @@ export const businessDetails = {
   ],
 
   phone: napDetails.phone,
+  phoneHref: "tel:+447417532136",
   phoneTel: "+447417532136",
   email: "info@sterlingcrest.co.uk",
-  whatsappNumber: "",
+
+  whatsappNumber: "447417532136",
+  whatsappUrl:
+    "https://wa.me/447417532136?text=Hello%20Sterling%20Crest%20Accountants%2C%20I%20would%20like%20to%20discuss%20accounting%20or%20tax%20support.",
 
   websiteUrl: "https://www.sterlingcrest.co.uk",
   consultationUrl:
@@ -42,21 +46,21 @@ export const businessDetails = {
   onlineConsultations: true,
 
   /** Google Business Profile URL — leave empty until confirmed. */
-  googleBusinessProfileUrl: "",
+  googleBusinessProfileUrl: "https://share.google/35VvheFKduO4v6B9p",
   /** @deprecated Use googleBusinessProfileUrl */
   googleBusinessUrl: "",
 
   socialLinks: {
-    linkedin: "",
-    facebook: "",
-    instagram: "",
+    linkedin: "https://www.linkedin.com/company/sterling-crest-accountants-ltd/",
+    facebook: "https://www.facebook.com/profile.php?id=61592590986744",
+    instagram: "https://www.instagram.com/sterlingcrestaccountants/",
     x: "",
   },
 
-  /** Legacy individual fields kept in sync via getters below for older imports. */
-  linkedinUrl: "",
-  facebookUrl: "",
-  instagramUrl: "",
+  /** Legacy individual fields — prefer socialLinks. */
+  linkedinUrl: "https://www.linkedin.com/company/sterling-crest-accountants-ltd/",
+  facebookUrl: "https://www.facebook.com/profile.php?id=61592590986744",
+  instagramUrl: "https://www.instagram.com/sterlingcrestaccountants/",
 
   /**
    * Genuine reviews only. Leave empty until verified testimonials are supplied.
@@ -121,6 +125,9 @@ export function hasValue(value) {
 }
 
 export function getPhoneHref() {
+  if (hasValue(businessDetails.phoneHref)) {
+    return businessDetails.phoneHref.trim();
+  }
   if (hasValue(businessDetails.phoneTel)) {
     return `tel:${businessDetails.phoneTel}`;
   }
@@ -128,13 +135,20 @@ export function getPhoneHref() {
   return `tel:${businessDetails.phone.replace(/\s+/g, "")}`;
 }
 
-export function getWhatsAppHref(
-  message = "Hello, I would like to enquire about your accountancy services."
-) {
+/**
+ * WhatsApp chat URL from central config.
+ * Prefer whatsappUrl; otherwise build from whatsappNumber.
+ */
+export function getWhatsAppHref() {
+  if (hasValue(businessDetails.whatsappUrl)) {
+    return businessDetails.whatsappUrl.trim();
+  }
   if (!hasValue(businessDetails.whatsappNumber)) return null;
   const digits = businessDetails.whatsappNumber.replace(/[^\d]/g, "");
   if (!digits) return null;
-  return `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${digits}?text=${encodeURIComponent(
+    "Hello Sterling Crest Accountants, I would like to discuss accounting or tax support."
+  )}`;
 }
 
 export function getEmailHref(subject = "Accountancy enquiry") {
@@ -152,7 +166,10 @@ export function getGoogleBusinessProfileUrl() {
   return "";
 }
 
-/** Configured public social / profile URLs for sameAs and UI. */
+/**
+ * Configured public profile URLs for JSON-LD sameAs.
+ * Excludes WhatsApp, Picktime and empty values.
+ */
 export function getSocialProfiles() {
   const links = businessDetails.socialLinks || {};
   return [
@@ -161,31 +178,42 @@ export function getSocialProfiles() {
     links.instagram || businessDetails.instagramUrl,
     links.x,
     getGoogleBusinessProfileUrl(),
-  ].filter(hasValue);
+  ]
+    .map((value) => (typeof value === "string" ? value.trim() : value))
+    .filter(hasValue);
 }
 
+/** Configured social links for UI icons (empty profiles omitted). */
 export function getPublicSocialLinks() {
   const links = businessDetails.socialLinks || {};
   return [
     {
+      key: "linkedin",
       label: "LinkedIn",
       href: links.linkedin || businessDetails.linkedinUrl,
-      ariaLabel: `${businessDetails.tradingName} on LinkedIn`,
+      ariaLabel: "Sterling Crest Accountants on LinkedIn",
+      event: "linkedin_click",
     },
     {
+      key: "facebook",
       label: "Facebook",
       href: links.facebook || businessDetails.facebookUrl,
-      ariaLabel: `${businessDetails.tradingName} on Facebook`,
+      ariaLabel: "Sterling Crest Accountants on Facebook",
+      event: "facebook_click",
     },
     {
+      key: "instagram",
       label: "Instagram",
       href: links.instagram || businessDetails.instagramUrl,
-      ariaLabel: `${businessDetails.tradingName} on Instagram`,
+      ariaLabel: "Sterling Crest Accountants on Instagram",
+      event: "instagram_click",
     },
     {
+      key: "x",
       label: "X",
       href: links.x,
-      ariaLabel: `${businessDetails.tradingName} on X`,
+      ariaLabel: "Sterling Crest Accountants on X",
+      event: "x_click",
     },
   ].filter((item) => hasValue(item.href));
 }

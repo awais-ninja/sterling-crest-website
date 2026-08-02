@@ -27,7 +27,7 @@ export default function HomeLogoLink({
     <Link
       href="/"
       onClick={handleClick}
-      className={className}
+      className={`transition-interactive ${className}`.trim()}
       aria-label="Sterling Crest Accountants homepage"
     >
       <Image

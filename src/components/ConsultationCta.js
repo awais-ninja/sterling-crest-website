@@ -17,12 +17,8 @@ export function ConsultationCta({
   location = "cta",
   ariaLabel,
 }) {
-  const base =
-    variant === "primary"
-      ? "bg-gold text-on-gold hover:bg-gold-dark shadow-md hover:shadow-lg"
-      : "border-2 border-gold text-gold bg-transparent hover:bg-gold hover:text-on-gold";
-
-  const classes = `inline-flex items-center justify-center min-h-12 px-8 py-3 rounded-md font-semibold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold ${base} ${className}`;
+  const base = variant === "primary" ? "button-primary" : "button-secondary";
+  const classes = `${base} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold ${className}`;
 
   const label =
     ariaLabel ||

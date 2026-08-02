@@ -3,6 +3,7 @@
 import ContactForm from "@/components/ContactForm";
 import { ConsultationCta } from "@/components/ConsultationCta";
 import PageShell from "@/components/PageShell";
+import SocialLinks from "@/components/SocialLinks";
 import {
   businessDetails,
   getEmailHref,
@@ -88,23 +89,49 @@ function ContactPageInner() {
             </div>
 
             <aside className="lg:col-span-2 space-y-6">
-              <div className="bg-gradient-to-br from-surface-elevated to-surface p-6 rounded-xl border border-gold/20">
+              <div className="card-interactive bg-gradient-to-br from-surface-elevated to-surface p-6 rounded-xl">
                 <h2 className="text-xl font-semibold text-ink mb-3">
-                  Book a consultation
+                  Book a free 30-minute consultation
                 </h2>
                 <p className="text-sm text-ink-muted mb-4 leading-relaxed">
-                  Prefer to choose a time online? Book a free 30 minute
-                  consultation with our team.
+                  Prefer to choose a time online? Book a free consultation with
+                  our team.
                 </p>
                 <ConsultationCta
                   location="contact_sidebar"
                   className="w-full min-h-11 px-5 text-sm"
                 >
-                  Book a Free 30 Minute Consultation
+                  Book a Consultation
                 </ConsultationCta>
               </div>
 
-              <div className="bg-gradient-to-br from-surface-elevated to-surface p-6 rounded-xl border border-gold/20">
+              {whatsappHref && (
+                <div className="card-interactive bg-gradient-to-br from-surface-elevated to-surface p-6 rounded-xl">
+                  <h2 className="text-xl font-semibold text-ink mb-3">
+                    WhatsApp Us
+                  </h2>
+                  <p className="text-sm text-ink-muted mb-4 leading-relaxed">
+                    Prefer WhatsApp? Send us a message and briefly tell us what
+                    support you need.
+                  </p>
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Message Sterling Crest Accountants on WhatsApp"
+                    className="inline-flex w-full items-center justify-center min-h-11 px-5 rounded-md font-semibold border-2 border-gold text-gold hover:bg-gold hover:text-on-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                    onClick={() =>
+                      trackEvent(AnalyticsEvents.WHATSAPP_CLICK, {
+                        location: "contact_page",
+                      })
+                    }
+                  >
+                    WhatsApp Us
+                  </a>
+                </div>
+              )}
+
+              <div className="card-interactive bg-gradient-to-br from-surface-elevated to-surface p-6 rounded-xl">
                 <h2 className="text-xl font-semibold text-ink mb-4">
                   Contact details
                 </h2>
@@ -150,18 +177,25 @@ function ContactPageInner() {
                         href={whatsappHref}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Message Sterling Crest Accountants on WhatsApp"
                         className="link-gold"
                         onClick={() =>
                           trackEvent(AnalyticsEvents.WHATSAPP_CLICK, {
-                            location: "contact_page",
+                            location: "contact_page_details",
                           })
                         }
                       >
-                        Message us on WhatsApp
+                        WhatsApp Us
                       </a>
                     </li>
                   )}
                 </ul>
+                <div className="mt-5 pt-4 border-t border-gold/20">
+                  <span className="block text-ink text-sm mb-3">
+                    Follow us
+                  </span>
+                  <SocialLinks location="contact_page" />
+                </div>
               </div>
 
               <div className="bg-gradient-to-br from-surface-elevated to-surface p-6 rounded-xl border border-gold/20 space-y-3 text-sm text-ink-muted">

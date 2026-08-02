@@ -111,7 +111,7 @@ export default function ServicePageContent({ service }) {
               <li key={item.slug}>
                 <Link
                   href={`/services/${item.slug}`}
-                  className="block h-full p-5 rounded-xl border border-gold/20 hover:border-gold/50 text-ink hover:text-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                  className="card-interactive group block h-full p-5 rounded-xl text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                   aria-label={`View ${item.title} services`}
                 >
                   <span className="font-semibold">View {item.title} services</span>

@@ -14,11 +14,7 @@ const trustPoints = [
 export default function HeroSection() {
   return (
     <section className="relative w-full min-h-[min(92vh,52rem)] flex items-end lg:items-center overflow-hidden">
-      {/*
-        Native <picture> so desktop/mobile each download one asset — no JS swap
-        (JS swap was tanking desktop Speed Index).
-      */}
-      <picture className="absolute inset-0">
+      <picture className="absolute inset-0 image-hover image-hover-hero">
         <source
           media="(min-width: 1024px)"
           srcSet="/homepage/home-page-hero.webp"
@@ -46,16 +42,16 @@ export default function HeroSection() {
 
       <div className="relative z-10 w-full mx-auto max-w-7xl px-4 sm:px-6 py-16 md:py-24 lg:py-28">
         <div className="max-w-2xl text-center lg:text-left space-y-6">
-          <p className="text-gold text-sm sm:text-base font-semibold tracking-wide">
+          <p className="hero-enter text-gold text-sm sm:text-base font-semibold tracking-wide">
             Welcome to {businessDetails.tradingName}
           </p>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-ink leading-tight break-words">
+          <h1 className="hero-enter hero-enter-delay-1 text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-ink leading-tight break-words">
             UK Accountants for Limited Companies, Self Assessment and Company
             Accounts
           </h1>
 
-          <p className="text-base sm:text-lg text-ink-muted leading-relaxed">
+          <p className="hero-enter hero-enter-delay-2 text-base sm:text-lg text-ink-muted leading-relaxed">
             Accounting and tax support for limited companies, self employed
             professionals and landlords across the UK. Fixed fee help with
             bookkeeping, payroll, VAT returns, corporation tax, company
@@ -63,19 +59,16 @@ export default function HeroSection() {
             use week to week.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+          <div className="hero-enter hero-enter-delay-3 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
             <ConsultationCta location="hero">
               Book Free Consultation
             </ConsultationCta>
-            <Link
-              href="/services"
-              className="inline-flex items-center justify-center min-h-12 px-8 py-3 rounded-lg font-semibold border-2 border-gold text-gold hover:bg-gold hover:text-on-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-            >
+            <Link href="/services" className="button-secondary">
               View Services
             </Link>
           </div>
 
-          <ul className="flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-2 pt-2 text-sm text-ink-muted">
+          <ul className="hero-enter hero-enter-delay-3 flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-2 pt-2 text-sm text-ink-muted">
             {trustPoints.map((point) => (
               <li key={point} className="inline-flex items-center gap-2">
                 <span

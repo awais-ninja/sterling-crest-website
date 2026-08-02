@@ -54,12 +54,13 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: auto !important;
   }
 
   *,
   *::before,
   *::after {
+    scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -81,8 +82,327 @@ img {
 }
 
 :focus-visible {
-  outline: 2px solid rgb(var(--gold));
-  outline-offset: 2px;
+  outline: 3px solid rgb(var(--gold) / 0.9);
+  outline-offset: 3px;
+}
+
+/* Motion tokens — subtle, professional accountancy-site interactions */
+@layer components {
+  .ease-brand {
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .transition-interactive {
+    transition:
+      transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 250ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 250ms ease,
+      background-color 250ms ease,
+      color 250ms ease,
+      filter 250ms ease,
+      opacity 250ms ease;
+  }
+
+  .button-primary {
+    @apply inline-flex items-center justify-center min-h-12 px-8 py-3 rounded-md font-semibold bg-gold text-on-gold shadow-md;
+    transition:
+      transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .button-secondary {
+    @apply inline-flex items-center justify-center min-h-12 px-8 py-3 rounded-md font-semibold border-2 border-gold text-gold bg-transparent;
+    transition:
+      transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .card-interactive {
+    @apply transition-interactive border border-gold/20;
+  }
+
+  .card-interactive:focus-visible {
+    transform: translateY(-4px);
+    border-color: rgb(var(--gold) / 0.65);
+    box-shadow:
+      0 14px 36px rgb(5 14 24 / 0.16),
+      0 0 0 1px rgb(var(--gold) / 0.08);
+  }
+
+  .card-interactive:focus-visible .card-heading {
+    color: rgb(var(--gold));
+  }
+
+  .card-heading {
+    transition: color 220ms ease;
+  }
+
+  .icon-interactive {
+    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .image-hover {
+    overflow: hidden;
+  }
+
+  .image-hover img,
+  .image-hover picture img {
+    transition:
+      transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 350ms ease;
+    will-change: transform;
+  }
+
+  .image-hover-hero img,
+  .image-hover-hero picture img {
+    transition:
+      transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 400ms ease;
+  }
+
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0.35rem;
+    width: 100%;
+    height: 2px;
+    background: rgb(var(--gold));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 220ms ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after,
+  .nav-link[aria-current="page"]::after,
+  .nav-link[data-open="true"]::after {
+    transform: scaleX(1);
+  }
+
+  .mega-panel-inner[data-open="true"] {
+    animation: mega-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .mobile-drawer {
+    transition:
+      opacity 220ms ease,
+      transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .mobile-drawer-enter {
+    animation: mega-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .link-arrow {
+    display: inline-block;
+    transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .group:hover .link-arrow,
+  .group:focus-visible .link-arrow {
+    transform: translateX(3px);
+  }
+
+  .footer-link {
+    @apply text-ink-muted text-sm relative inline-block;
+    transition: color 180ms ease;
+  }
+
+  .footer-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background: rgb(var(--gold));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 200ms ease;
+  }
+
+  .footer-link:hover,
+  .footer-link:focus-visible {
+    color: rgb(var(--gold));
+  }
+
+  .footer-link:hover::after,
+  .footer-link:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  /* Scroll reveal — content stays visible until JS opts into animation */
+  .reveal {
+    transition:
+      opacity 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal[data-ready="true"]:not([data-visible="true"]) {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stagger-item {
+    transition:
+      opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .stagger-item[data-ready="true"]:not([data-visible="true"]) {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  .stagger-item[data-visible="true"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero-enter {
+    animation: hero-fade-up 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .hero-enter-delay-1 {
+    animation-delay: 80ms;
+  }
+
+  .hero-enter-delay-2 {
+    animation-delay: 140ms;
+  }
+
+  .hero-enter-delay-3 {
+    animation-delay: 200ms;
+  }
+
+  .cta-panel {
+    transition:
+      border-color 300ms ease,
+      box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      background 400ms ease;
+  }
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mega-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hover-lift:hover {
+    transform: translateY(-6px);
+  }
+
+  .hover-scale-subtle:hover {
+    transform: scale(1.025);
+  }
+
+  .button-primary:hover {
+    transform: translateY(-2px);
+    background-color: rgb(var(--gold-dark));
+    box-shadow: 0 10px 24px rgb(var(--gold) / 0.25);
+  }
+
+  .button-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgb(var(--gold) / 0.18);
+  }
+
+  .button-secondary:hover {
+    transform: translateY(-2px);
+    background-color: rgb(var(--gold));
+    color: rgb(var(--on-gold));
+    box-shadow: 0 8px 20px rgb(var(--gold) / 0.18);
+  }
+
+  .button-secondary:active {
+    transform: translateY(0);
+  }
+
+  .card-interactive:hover {
+    transform: translateY(-6px);
+    border-color: rgb(var(--gold) / 0.65);
+    box-shadow:
+      0 18px 45px rgb(5 14 24 / 0.18),
+      0 0 0 1px rgb(var(--gold) / 0.08);
+  }
+
+  .card-interactive:hover .card-heading {
+    color: rgb(var(--gold));
+  }
+
+  .card-interactive:hover .icon-interactive {
+    transform: scale(1.05);
+  }
+
+  .image-hover:hover img,
+  .image-hover:hover picture img {
+    transform: scale(1.035);
+    filter: brightness(1.03) contrast(1.02);
+  }
+
+  .image-hover-hero:hover img,
+  .image-hover-hero:hover picture img {
+    transform: scale(1.015);
+    filter: brightness(1.02);
+  }
+
+  .social-interactive:hover {
+    transform: translateY(-2px);
+    border-color: rgb(var(--gold) / 0.7);
+    color: rgb(var(--gold));
+  }
+
+  .theme-logo:hover {
+    filter: brightness(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter,
+  .hero-enter-delay-1,
+  .hero-enter-delay-2,
+  .hero-enter-delay-3 {
+    animation: none !important;
+  }
+
+  .reveal[data-ready="true"]:not([data-visible="true"]),
+  .stagger-item[data-ready="true"]:not([data-visible="true"]) {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 .sr-only {
